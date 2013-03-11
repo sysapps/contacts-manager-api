@@ -123,7 +123,7 @@
         <dd>This method allows to instantiate a new <code>ContactsRequest</code> object intended to search contacts
         within the address book that match the criteria indicated in the <code>options</code> parameter.
         <dl class='parameters'>
-             <dt>ContactFindOptions options</dt>
+             <dt>optional ContactFindOptions options</dt>
              <dd>
                Set of criteria that a contact needs to match to be included in the outcomes of the <code>find</code>
                operation. 
@@ -256,23 +256,22 @@
     </section>
 
     <section>
-      <h2><a>ContactFindOptions</a> Interface</h2>
-      <p>The <a>ContactFindOptions</a> interface represents the criteria used to select the contacts to be returned by a
+      <h2><a>ContactFindOptions</a> Dictionary</h2>
+      <p>The <a>ContactFindOptions</a> dictionary represents the criteria used to select the contacts to be returned by a
       <code>find</code> operation.
-      <dl title="[NoInterfaceObject]
-                 interface ContactFindOptions"
+      <dl title="dictionary ContactFindOptions"
           class="idl">
-        <dt>attribute DOMString filterValue</dt>
+        <dt>DOMString filterValue</dt>
         <dd>Represents the value used for the filtering (e.g. "Tom").
-        <dt>attribute DOMString filterOp</dt>
+        <dt>DOMString filterOp</dt>
         <dd>Represents the filtering operator used for the filtering (e.g. "contains").
-        <dt>attribute DOMString[] filterBy</dt>
+        <dt>sequence<DOMString> filterBy</dt>
         <dd>Represents the set of fields in which the search is performed (e.g. "givenName").
-        <dt>attribute DOMString sortBy</dt>
+        <dt>DOMString sortBy</dt>
         <dd>Represents the field by which the results of the search are sorted (e.g. "givenName").
-        <dt>attribute DOMString sortOrder</dt>
+        <dt>DOMString sortOrder</dt>
         <dd>Represents the order in which the results of the search are sorted (e.g. "descending").
-        <dt>attribute unsigned long filterLimit</dt>
+        <dt>unsigned long filterLimit</dt>
         <dd>Represents the maximum number of results that can be returned by the search operation.
       </dl>
       
