@@ -525,7 +525,7 @@
       added, removed and/or modified. Changes that are applied to the address book in batches cause a <a>ContactsChangeEvent</a>
       with multiple contact references to be fired, whereas changes applied sequentially cause a <a>ContactsChangeEvent</a>
       with a single contact reference to be fired
-      <dl title="[NoInterfaceObject]
+      <dl title="[Constructor(DOMString type, optional ContactsChangeEventInit eventInitDict)]
                  interface ContactsChangeEvent : Event"
           class="idl">
         <dt>readonly attribute DOMString[] added</dt>
@@ -534,6 +534,15 @@
         <dd>Indicates the identifier(s) of the <code>Contact</code> object(s) that have been modified.</dd>
         <dt>readonly attribute DOMString[] removed</dt>
         <dd>Indicates the identifier(s) of the <code>Contact</code> object(s) that have been removed.</dd>
+      </dl>
+
+      <dl title="dictionary ContactsChangeEventInit : EventInit" class="idl">
+        <dt>sequence<DOMString> added</dt>
+        <dd>
+        <dt>sequence<DOMString> modified</dt>
+        <dd>
+        <dt>sequence<DOMString> removed</dt>
+        <dd>
       </dl>
     </section>
 
