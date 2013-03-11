@@ -459,9 +459,8 @@
       <dl title="[NoInterfaceObject]
                  interface ContactsRequest"
           class="idl">
-        <dt>readonly attribute DOMString readyState</dt>
-        <dd>Indicates the state of the request, with possible string values 'processing',if the request has been made and it
-        is progressing, or 'done', if the request has been already completed.</dd>
+        <dt>readonly attribute ReadyState readyState</dt>
+        <dd>Indicates the state of the request.</dd>
 
         <dt>readonly attribute DOMError? error</dt>
         <dd>An error that occured during the request. Errors are as defined in [[!DOM4]].</dd>
@@ -481,6 +480,23 @@
         </dt>
         <dd></dd>
       </dl>
+
+      <section>
+      <h2>Enumerations</h2>
+
+      <p>A <a>ContactsRequest</a> can be in one of the following states:
+      <dl class="idl" title="enum ReadyState">
+            <dt>processing</dt>
+            <dd>
+                The request has been made and it is progressing.
+            </dd>
+
+            <dt>done</dt>
+            <dd>
+                The request has been already completed.
+            </dd>
+      </dl>
+      </section>
 
       <section>
         <h2>Event handlers</h2>
