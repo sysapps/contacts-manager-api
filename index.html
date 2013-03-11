@@ -456,8 +456,7 @@
       the operation completes, as well as a reference to the operation's result. A method that initiates an operation 
       (e.g. remove contact via the <code>remove</code> method in the <code>ContactsManager</code> interface) may return a
       ContactsRequest object that can be used to monitor the progress of that operation.
-      <dl title="[NoInterfaceObject]
-                 interface ContactsRequest"
+      <dl title="interface ContactsRequest : EventTarget"
           class="idl">
         <dt>readonly attribute ReadyState readyState</dt>
         <dd>Indicates the state of the request.</dd>
