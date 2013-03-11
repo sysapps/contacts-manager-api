@@ -56,9 +56,7 @@
             var contact = new Contact();
             contact.givenName[0] = 'John'
             contact.familyName[0] = 'Doe'
-            var mobilephone = new ContactTelField();
-            mobilephone.value = '+34698765432'
-            mobilephone.type[0] = 'PREF'
+            var mobilephone = new ContactTelField(['PREF', 'home'], '+34698765432');
             contact.tel[0] = mobilephone
             var request = navigator.contacts.save(contact);
             request.onsuccess = function() { 
@@ -317,8 +315,7 @@
     <section>
       <h2><a>ContactField</a> Interface</h2>
       <p>The <a>ContactField</a> interface represents a user's contact address and the type associated to it.
-      <dl title="[NoInterfaceObject]
-                 interface ContactField"
+      <dl title="[Constructor(DOMString［］ type, DOMString value)] interface ContactField"
           class="idl">
         <dt>attribute DOMString[] type</dt>
         <dd>Indicates whether it is a preferred address ("PREF") and the type of contact address (e.g. "home", "work").
@@ -332,11 +329,10 @@
       <h2><a>ContactTelField</a> Interface</h2>
       <p>The <a>ContactTelField</a> interface represents a telephone number as well as metadata associated to it, namely
       the type of address and the carrier providing service to the telephony subscription associated to that number.
-      <dl title="[NoInterfaceObject]
-                 interface ContactTelField : ContactField"
+      <dl title="[Constructor(DOMString［］ type, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
           class="idl">
 
-        <dt>attribute DOMString carrier</dt>
+        <dt>attribute DOMString? carrier</dt>
         <dd>Indicates the carrier providing service to the telephony subscription associated to that number</dd>
 
       </dl>
