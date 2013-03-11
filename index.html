@@ -341,7 +341,7 @@
       <h2><a>ContactAddress</a> Interface</h2>
       <p>The <a>ContactAddress</a> interface represents a user's physical address and the type associated to it. This
       interface is based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> ADR attribute.
-      <dl title="[NoInterfaceObject]
+      <dl title="[Constructor(optional ContactAddressInit initDict)]
                  interface ContactAddress"
           class="idl">
         <dt>attribute DOMString[] type</dt>
@@ -357,6 +357,18 @@
         <dd>A string that contains the postal code. It maps to the sixth component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString countryName</dt>
         <dd>A string that contains the name of the country. It maps to the seventh component in vCard's ADR attribute.</dd>
+      </dl>
+      <dl title="dictionary ContactAddressInit" class="idl">
+        <dt>DOMString streetAddress</dt>
+        <dd>
+        <dt>DOMString locality</dt>
+        <dd>
+        <dt>DOMString region</dt>
+        <dd>
+        <dt>DOMString postalCode</dt>
+        <dd>
+        <dt>DOMString countryName</dt>
+        <dd>
       </dl>
     </section>    
     
