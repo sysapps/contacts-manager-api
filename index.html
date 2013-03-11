@@ -257,23 +257,54 @@
 
     <section>
       <h2><a>ContactFindOptions</a> Dictionary</h2>
+
       <p>The <a>ContactFindOptions</a> dictionary represents the criteria used to select the contacts to be returned by a
       <code>find</code> operation.
       <dl title="dictionary ContactFindOptions"
           class="idl">
         <dt>DOMString filterValue</dt>
         <dd>Represents the value used for the filtering (e.g. "Tom").
-        <dt>DOMString filterOp</dt>
-        <dd>Represents the filtering operator used for the filtering (e.g. "contains").
+        <dt>FilterOperation filterOp</dt>
+        <dd>Represents the filtering operator used for the filtering.
         <dt>sequence<DOMString> filterBy</dt>
         <dd>Represents the set of fields in which the search is performed (e.g. "givenName").
         <dt>DOMString sortBy</dt>
         <dd>Represents the field by which the results of the search are sorted (e.g. "givenName").
-        <dt>DOMString sortOrder</dt>
-        <dd>Represents the order in which the results of the search are sorted (e.g. "descending").
+        <dt>SortOrder sortOrder</dt>
+        <dd>Represents the order in which the results of the search are sorted.
         <dt>unsigned long filterLimit</dt>
         <dd>Represents the maximum number of results that can be returned by the search operation.
       </dl>
+
+    <section>
+      <h2>Enumerations</h2>
+
+      <p>There are 2 possible filter operations:
+      <dl class="idl" title="enum FilterOperation">
+            <dt>contains</dt>
+            <dd>
+                With this operation, a contact will be returned if its filtered field contains the given value.
+            </dd>
+
+            <dt>is</dt>
+            <dd>
+                With this operation, a contact will be returned if its filtered field matches exactly the given value.
+            </dd>
+      </dl>
+
+      <p>The returned contacts can be sorted in one of the following orders:
+      <dl class="idl" title="enum SortOrder">
+            <dt>ascending</dt>
+            <dd>
+                The contacts will be sorted in ascending order.
+            </dd>
+
+            <dt>descending</dt>
+            <dd>
+                The contacts will be sorted in descending order.
+            </dd>
+      </dl>
+      </section>
       
       <p class="issue">
          It is for further study whether the level of flexibility of the filters needs to be increased and/or additional
