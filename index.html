@@ -400,36 +400,36 @@
         <dt>attribute DOMString[] honorificSuffix</dt>
         <dd>A string or set thereof representing the contact's honorific suffix(es). It maps to the fifth component in
         vCard's N attribute.
-        <dt>attribute DOMString[] nickname</dt>
-        <dd>A string or set thereof representing the contact's nick name(s). It maps to vCard's NICKNAME attribute.
+        <dt>attribute ContactField[] nickname</dt>
+        <dd>A <code>ContactField</code> element or set thereof representing the contact's nick name(s). It maps to vCard's NICKNAME attribute.
         <dt>attribute ContactField[] email</dt>
-        <dd>An <code>ContactField</code> element or set thereof containing the contact's email address(es).
+        <dd>A <code>ContactField</code> element or set thereof containing the contact's email address(es).
         It maps to vCard's EMAIL attribute.</dd>
-        <dt>attribute DOMString[] photo</dt>
-        <dd>A string or set thereof representing the UIR of the photo(s) of the contact. It maps to vCard's PHOTO attribute.
+        <dt>attribute ContactField[] photo</dt>
+        <dd>A <code>ContactField</code> element or set thereof representing the URI of the photo(s) of the contact. It maps to vCard's PHOTO attribute.
         <dt>attribute ContactField[] url</dt>
-        <dd>An <code>ContactField</code> element or set thereof containing the user's urls (e.g. personal blog).
+        <dd>A <code>ContactField</code> element or set thereof containing the user's urls (e.g. personal blog).
         It maps to vCard's URL attribute.</dd>
-        <dt>attribute DOMString[] categories</dt>
-        <dd>A string or set thereof representing the category or categories associated to the contact (e.g. "family").
+        <dt>attribute ContactField[] categories</dt>
+        <dd>A <code>ContactField</code> element or set thereof representing the category or categories associated to the contact (e.g. "family").
         It maps to vCard's CATEGORIES attribute.
         <dt>attribute ContactAddress[] adr</dt>
-        <dd>An <code>ContactAddress</code> element or set thereof containing the user's physical address(es). It maps
+        <dd>A <code>ContactAddress</code> element or set thereof containing the user's physical address(es). It maps
         to vCard's ADR attribute</dd>
         <dt>attribute ContactTelField[] tel</dt>
-        <dd>An <code>ContactTelField</code> element or set thereof containing the user's telephone numbers.It maps
+        <dd>A <code>ContactTelField</code> element or set thereof containing the user's telephone numbers.It maps
         to vCard's TEL attribute</dd>
-        <dt>attribute DOMString[] org</dt>
-        <dd>A string or set thereof representing the organization(s) the contact belongs to. It maps to vCard's ORG attribute
-        <dt>attribute DOMString[] jobTitle</dt>
-        <dd>A string or set thereof representing the contact's job title(s). It maps to vCard's TITLE attribute
+        <dt>attribute ContactField[] org</dt>
+        <dd>A <code>ContactTelField</code> element or set thereof representing the organization(s) the contact belongs to. It maps to vCard's ORG attribute
+        <dt>attribute ContactField[] jobTitle</dt>
+        <dd>A <code>ContactTelField</code> element or set thereof representing the contact's job title(s). It maps to vCard's TITLE attribute
         <dt>attribute Date bday</dt>
         <dd>A <code>Date</code> element representing the contact's birth date. It maps to vCard's BDAY attribute
-        <dt>attribute DOMString[] note</dt>
-        <dd>A string or set thereof specifying supplemental information or a comment that is associated with the contact.
+        <dt>attribute ContactField[] note</dt>
+        <dd>A <code>ContactField</code> element or set thereof specifying supplemental information or a comment that is associated with the contact.
         It maps to vCard's NOTE attribute
-        <dt>attribute ContactAddress[] impp</dt>
-        <dd>An <code>ContactAddress</code> element or set thereof containing the user's instant messaging address(es).
+        <dt>attribute ContactField[] impp</dt>
+        <dd>A <code>ContactField</code> element or set thereof containing the user's instant messaging address(es).
         It maps to vCard's IMPP attribute</dd>
         <dt>attribute Date anniversary</dt>
         <dd>A <code>Date</code> element representing the contact's anniversary. It maps to vCard's ANNIVERSARY attribute</dd>
