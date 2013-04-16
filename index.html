@@ -6,12 +6,12 @@
     <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <script class="remove">
       var respecConfig = {
-          specStatus:           "FPWD",
+          specStatus:           "ED",
           shortName:            "contacts-manager-api",
           publishDate:          "",
           previousPublishDate:  "",
           previousMaturity:     "",
-          edDraftURI:           "http://sysapps.github.com/contacts-manager-api/index.html",
+          edDraftURI:           "http://contacts-manager-api.sysapps.org/",
           // lcEnd:                "",
           crEnd:                "",
           editors:  [
@@ -40,6 +40,10 @@
       This document defines a System Level API to manage the user's contacts that are stored in the system's address book.
       Future versions of this specification are expected to align the contact data model with the
       <a href="http://www.w3.org/TR/contacts-api">Contacts API</a> being defined by the Device APIs Working Group.
+      
+      <p>If you find any issue with this specification, please 
+         <a href="https://github.com/sysapps/contacts-manager-api/issues">file a bug on Github</a>.
+
     </section>
     
     <section class="informative">
@@ -153,7 +157,6 @@
          </dl>
         </dd>
 
-        </dd>
         <dt class="no-docs">
           attribute EventHandler oncontactschange
         </dt>
@@ -249,7 +252,7 @@
           </tbody>
         </table>
       </section>
-    <p>The event</a> named <a><code>contactschange</code></a> MUST implement the <a>ContactsChangeEvent</a> interface.
+    <p>The event named <a><code>contactschange</code></a> MUST implement the <a>ContactsChangeEvent</a> interface.
     </section>
 
     <section>
@@ -550,7 +553,7 @@
         <dd>Indicates the identifier(s) of the <code>Contact</code> object(s) that have been removed.</dd>
       </dl>
 
-      <section> <h3><a>ContactsChangeEventInit</a> Dictionary</h2>
+      <section> <h3><a>ContactsChangeEventInit</a> Dictionary</h3>
       <dl title="dictionary ContactsChangeEventInit : EventInit" class="idl">
         <dt>sequence&lt;DOMString&gt; added</dt>
         <dd>
