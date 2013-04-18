@@ -58,10 +58,10 @@
       <pre class="example highlight">
 
             var contact = new Contact();
-            contact.givenName[0] = 'John'
-            contact.familyName[0] = 'Doe'
+            contact.givenNames[0] = 'John';
+            contact.familyNames[0] = 'Doe';
             var mobilephone = new ContactTelField(['PREF', 'home'], '+34698765432');
-            contact.tel[0] = mobilephone
+            contact.phoneNumbers[0] = mobilephone;
             var request = navigator.contacts.save(contact);
             request.onsuccess = function() { 
                         window.console.log('Contact saved!'); 
@@ -316,12 +316,11 @@
     
     <section>
       <h2><a>ContactField</a> Interface</h2>
-      <p>The <a>ContactField</a> interface represents a user's contact address and the type associated to it.
-      <dl title="[Constructor(DOMString［］ type, DOMString value)] interface ContactField"
+      <p>The <a>ContactField</a> interface represents a user's attribute and the types associated to it.
+      <dl title="[Constructor(DOMString［］ types, DOMString value)] interface ContactField"
           class="idl">
-        <dt>attribute DOMString[] type</dt>
-        <dd>Indicates whether it is a preferred address ("PREF") and the type of contact address (e.g. "home", "work").
-        Several <code>type</code> attributes are possible for each single contact address.</dd>
+        <dt>attribute DOMString[] types</dt>
+        <dd>Indicates whether it is the preferred contact field ("PREF") and the types of this contact field (e.g. "home", "work").</dd>
         <dt>attribute DOMString value</dt>
         <dd>A string that contains the user's address.</dd>
       </dl>
@@ -330,8 +329,8 @@
     <section>
       <h2><a>ContactTelField</a> Interface</h2>
       <p>The <a>ContactTelField</a> interface represents a telephone number as well as metadata associated to it, namely
-      the type of address and the carrier providing service to the telephony subscription associated to that number.
-      <dl title="[Constructor(DOMString［］ type, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
+      the types (e.g. "voice", "text") and the carrier providing service to the telephony subscription associated to that number.
+      <dl title="[Constructor(DOMString［］ types, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
           class="idl">
 
         <dt>attribute DOMString? carrier</dt>
@@ -342,14 +341,13 @@
     
     <section>
       <h2><a>ContactAddress</a> Interface</h2>
-      <p>The <a>ContactAddress</a> interface represents a user's physical address and the type associated to it. This
+      <p>The <a>ContactAddress</a> interface represents a user's physical address and the types associated to it. This
       interface is based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> ADR attribute.
       <dl title="[Constructor(optional ContactAddressInit initDict)]
                  interface ContactAddress"
           class="idl">
-        <dt>attribute DOMString[] type</dt>
-        <dd>Indicates whether it is a preferred address ("PREF") and the type of contact address (e.g. "home", "work").
-        Several <code>type</code> attributes are possible for each single contact address.</dd>
+        <dt>attribute DOMString[] types</dt>
+        <dd>Indicates whether it is the preferred address ("PREF") and the types for this contact address (e.g. "home", "work").</dd>
         <dt>attribute DOMString streetAddress</dt>
         <dd>A string that contains the name of the street. It maps to the third component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString locality</dt>
@@ -386,49 +384,49 @@
       <dl title="[NoInterfaceObject]
                  interface ContactProperties"
           class="idl">
-        <dt>attribute DOMString[] name</dt>
+        <dt>attribute DOMString[] names</dt>
         <dd>A string or set thereof representing the  contact's display name(s). It maps to vCard's FN attribute.
-        <dt>attribute DOMString[] honorificPrefix</dt>
+        <dt>attribute DOMString[] honorificPrefixes</dt>
         <dd>A string or set thereof representing the contact's honorific prefix(es). It maps to the forth component in
         vCard's N attribute.
-        <dt>attribute DOMString[] givenName</dt>
+        <dt>attribute DOMString[] givenNames</dt>
         <dd>A string or set thereof representing the contact's given name(s). It maps to the second component in
         vCard's N attribute.
-        <dt>attribute DOMString[] additionalName</dt>
+        <dt>attribute DOMString[] additionalNames</dt>
         <dd>A string or set thereof representing any additional name of the contact. It maps to the third component in
         vCard's N attribute.
-        <dt>attribute DOMString[] familyName</dt>
+        <dt>attribute DOMString[] familyNames</dt>
         <dd>A string or set thereof representing the contact's family name(s). It maps to the first component in vCard's
         N attribute.
-        <dt>attribute DOMString[] honorificSuffix</dt>
+        <dt>attribute DOMString[] honorificSuffixes</dt>
         <dd>A string or set thereof representing the contact's honorific suffix(es). It maps to the fifth component in
         vCard's N attribute.
-        <dt>attribute DOMString[] nickname</dt>
+        <dt>attribute DOMString[] nicknames</dt>
         <dd>A string or set thereof representing the contact's nick name(s). It maps to vCard's NICKNAME attribute.
-        <dt>attribute ContactField[] email</dt>
-        <dd>An <code>ContactField</code> element or set thereof containing the contact's email address(es).
+        <dt>attribute ContactField[] emails</dt>
+        <dd>A <code>ContactField</code> element or set thereof containing the contact's email address(es).
         It maps to vCard's EMAIL attribute.</dd>
-        <dt>attribute DOMString[] photo</dt>
+        <dt>attribute DOMString[] photos</dt>
         <dd>A string or set thereof representing the URI of the photo(s) of the contact. It maps to vCard's PHOTO attribute.
-        <dt>attribute ContactField[] url</dt>
-        <dd>An <code>ContactField</code> element or set thereof containing the user's urls (e.g. personal blog).
+        <dt>attribute ContactField[] urls</dt>
+        <dd>A <code>ContactField</code> element or set thereof containing the user's urls (e.g. personal blog).
         It maps to vCard's URL attribute.</dd>
         <dt>attribute DOMString[] categories</dt>
         <dd>A string or set thereof representing the category or categories associated to the contact (e.g. "family").
         It maps to vCard's CATEGORIES attribute.
-        <dt>attribute ContactAddress[] adr</dt>
-        <dd>An <code>ContactAddress</code> element or set thereof containing the user's physical address(es). It maps
+        <dt>attribute ContactAddress[] addresses</dt>
+        <dd>A <code>ContactAddress</code> element or set thereof containing the user's physical address(es). It maps
         to vCard's ADR attribute</dd>
-        <dt>attribute ContactTelField[] tel</dt>
-        <dd>An <code>ContactTelField</code> element or set thereof containing the user's telephone numbers.It maps
+        <dt>attribute ContactTelField[] phoneNumbers</dt>
+        <dd>A <code>ContactTelField</code> element or set thereof containing the user's telephone numbers. It maps
         to vCard's TEL attribute</dd>
-        <dt>attribute DOMString[] org</dt>
+        <dt>attribute DOMString[] organizations</dt>
         <dd>A string or set thereof representing the organization(s) the contact belongs to. It maps to vCard's ORG attribute
-        <dt>attribute DOMString[] jobTitle</dt>
+        <dt>attribute DOMString[] jobTitles</dt>
         <dd>A string or set thereof representing the contact's job title(s). It maps to vCard's TITLE attribute
         <dt>attribute Date bday</dt>
         <dd>A <code>Date</code> element representing the contact's birth date. It maps to vCard's BDAY attribute
-        <dt>attribute DOMString[] note</dt>
+        <dt>attribute DOMString[] notes</dt>
         <dd>A string or set thereof specifying supplemental information or a comment that is associated with the contact.
         It maps to vCard's NOTE attribute
         <dt>attribute ContactField[] impp</dt>
