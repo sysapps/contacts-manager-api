@@ -377,6 +377,22 @@
       </dl>
       </section>
     </section>    
+
+    <section>
+      <h2>The <code>ContactGender</code> enum</h2>
+      <dl title="enum ContactGender" class="idl">
+        <dt>male</dt>
+        <dd>contact is a male.</dd>
+        <dt>female</dt>
+        <dd>contact is a female.</dd>
+        <dt>other</dt>
+        <dd>contact has another gender.</dd>
+        <dt>none</dt>
+        <dd>contact does not have a gender (not applicable).</dd>
+        <dt>unknown</dt>
+        <dd>contact's gender is unknown.</dd>
+      </dl>
+    </section>
     
     <section>
       <h2><a>ContactProperties</a> Interface</h2>
@@ -436,10 +452,8 @@
         It maps to vCard's IMPP attribute</dd>
         <dt>attribute Date anniversary</dt>
         <dd>A <code>Date</code> element representing the contact's anniversary. It maps to vCard's ANNIVERSARY attribute</dd>
-        <dt>attribute DOMString sex</dt>
-        <dd>A string representing the contact's sex with following possible values: "M" for male, "F" for female, "O"
-        for other, "N" for "none or not applicable" and "U" for "unknown". It maps to the first component of vCard's
-        GENDER attribute.
+        <dt>attribute ContactGender gender</dt>
+        <dd>A string representing the contact's gender. It maps to the first component of vCard's GENDER attribute.
         <dt>attribute DOMString genderIdentity</dt>
         <dd>A free text string representing the contact's gender identity. It maps to the second component of vCard's
         GENDER attribute.
