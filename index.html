@@ -150,9 +150,9 @@
         <dt> ContactsRequest remove ()</dt>
         <dd>This method allows to remove a contact from the address book.
         <dl class='parameters'>
-             <dt>Contact contact</dt>
+             <dt>DOMString contactId</dt>
              <dd>
-               The <code>Contact</code> object that is requested to be removed from the address book.
+               The identifier of the <code>Contact</code> object that is requested to be removed from the address book.
              </dd>
          </dl>
         </dd>
@@ -215,7 +215,7 @@
 
       <p> The <dfn><code>remove</code></dfn> method when invoked MUST run the following steps:
         <ol>
-         <li>Make a request to the system to remove the <code>Contact</code> object passed as parameter from the address book.
+         <li>Make a request to the system to remove the <code>Contact</code> object identified by the <code>contactId</code> passed as parameter from the address book.
          <li>Create a new <code>ContactsRequest</code> object and set <code>readyState</code> of the
          <code>ContactsRequest</code> object to 'processing' and return the <code>ContactsRequest</code> to the caller 
          <li>If there is an error invoke the <code>onerror</code> <a>event handler</a> of the <code>ContactsRequest</code>
