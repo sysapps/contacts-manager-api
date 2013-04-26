@@ -58,8 +58,8 @@
       <pre class="example highlight">
 
             var contact = new Contact();
-            contact.givenNames[0] = 'John';
-            contact.familyNames[0] = 'Doe';
+            contact.name.givenNames[0] = 'John';
+            contact.name.familyNames[0] = 'Doe';
             var mobilephone = new ContactTelField(['PREF', 'home'], '+34698765432');
             contact.phoneNumbers[0] = mobilephone;
             var request = navigator.contacts.save(contact);
@@ -393,17 +393,15 @@
         <dd>contact's gender is unknown.</dd>
       </dl>
     </section>
-    
+
     <section>
-      <h2><a>ContactProperties</a> Interface</h2>
-      <p>The <a>ContactProperties</a> interface contains all the properties associated to the contact. As a principle
-      the attributes are based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the literal used in that standard. Any deviation is mentioned in
-      the description of the corresponding attribute.
+      <h2><a>ContactName</a> Interface</h2>
+      <p>The <a>ContactName</a> interface represents a user's maning attributes.
       <dl title="[NoInterfaceObject]
-                 interface ContactProperties"
+                 interface ContactName"
           class="idl">
-        <dt>attribute DOMString[] names</dt>
-        <dd>A string or set thereof representing the  contact's display name(s). It maps to vCard's FN attribute.
+        <dt>attribute DOMString[] displayNames</dt>
+        <dd>A string or set thereof representing the contact's display name(s). It maps to vCard's FN attribute.
         <dt>attribute DOMString[] honorificPrefixes</dt>
         <dd>A string or set thereof representing the contact's honorific prefix(es). It maps to the forth component in
         vCard's N attribute.
@@ -421,6 +419,19 @@
         vCard's N attribute.
         <dt>attribute DOMString[] nicknames</dt>
         <dd>A string or set thereof representing the contact's nick name(s). It maps to vCard's NICKNAME attribute.
+      </dl>
+    </section>
+
+    <section>
+      <h2><a>ContactProperties</a> Interface</h2>
+      <p>The <a>ContactProperties</a> interface contains all the properties associated to the contact. As a principle
+      the attributes are based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the literal used in that standard. Any deviation is mentioned in
+      the description of the corresponding attribute.
+      <dl title="[NoInterfaceObject]
+                 interface ContactProperties"
+          class="idl">
+        <dt>attribute ContactName name</dt>
+        <dd>An object representing the different naming attributes of the contact.
         <dt>attribute ContactField[] emails</dt>
         <dd>A <code>ContactField</code> element or set thereof containing the contact's email address(es).
         It maps to vCard's EMAIL attribute.</dd>
