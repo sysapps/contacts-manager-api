@@ -12,6 +12,6 @@ http://www.w3.org/2004/01/pp-impl/58119/status
 
 Useful links
 -
-The specification: http://contacts-manager.sysapps.org
+The specification: http://contacts-manager-api.sysapps.org
 The SysApps WG homepage: http://www.w3.org/2012/sysapps/
 The SysApps WG mailing-list: http://lists.w3.org/Archives/Public/public-sysapps/
