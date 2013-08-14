@@ -61,7 +61,7 @@
               'givenNames': ['John'],
               'familyNames': ['Doe']
               });
-            var mobilephone = new ContactTelField(['PREF', 'home'], '+34698765432');
+            var mobilephone = new ContactTelField(['home'], true, '+34698765432');
             var contact = new Contact({
               'name': contactName,
               'phoneNumbers': mobilephone
@@ -321,10 +321,12 @@
     <section>
       <h2><a>ContactField</a> Interface</h2>
       <p>The <a>ContactField</a> interface represents a user's attribute and the types associated to it.
-      <dl title="[Constructor(DOMString［］ types, DOMString value)] interface ContactField"
+      <dl title="[Constructor(DOMString［］ types, boolean preferred, DOMString value)] interface ContactField"
           class="idl">
         <dt>attribute DOMString[] types</dt>
-        <dd>Indicates whether it is the preferred contact field ("PREF") and the types of this contact field (e.g. "home", "work").</dd>
+        <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
+        <dt>attribute boolean preferred</dt>
+        <dd>Indicates whether this is the preferred contact field.</dd>
         <dt>attribute DOMString value</dt>
         <dd>A string that contains the user's address.</dd>
       </dl>
@@ -334,7 +336,7 @@
       <h2><a>ContactTelField</a> Interface</h2>
       <p>The <a>ContactTelField</a> interface represents a telephone number as well as metadata associated to it, namely
       the types (e.g. "voice", "text") and the carrier providing service to the telephony subscription associated to that number.
-      <dl title="[Constructor(DOMString［］ types, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
+      <dl title="[Constructor(DOMString［］ types, boolean preferred, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
           class="idl">
 
         <dt>attribute DOMString? carrier</dt>
@@ -351,7 +353,9 @@
                  interface ContactAddress"
           class="idl">
         <dt>attribute DOMString[] types</dt>
-        <dd>Indicates whether it is the preferred address ("PREF") and the types for this contact address (e.g. "home", "work").</dd>
+        <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
+        <dt>attribute boolean preferred</dt>
+        <dd>Indicates whether this is the preferred contact field.</dd>
         <dt>attribute DOMString streetAddress</dt>
         <dd>A string that contains the name of the street. It maps to the third component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString locality</dt>
@@ -426,7 +430,7 @@
       </dl>
 
       <section> <h3><a>ContactNameInit</a> Dictionary</h3>
-      <dl title="dictionary ContactAddressInit" class="idl">
+      <dl title="dictionary ContactNameInit" class="idl">
         <dt>DOMString displayName</dt>
         <dd>
         <dt>sequence&lt;DOMString&gt; honorificPrefixes</dt>
@@ -451,8 +455,12 @@
       <p>The <a>Contact</a> interface represents a contact stored in the address
       book. As a principle the attributes are based on <a
       href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the
-      literal used in that standard. Any deviation is mentioned in the
-      description of the corresponding attribute.
+      literal used in that standard. Any naming deviation is mentioned in the
+      description of the corresponding attribute. Whereas this correspondence
+      facilitates the import/export from/to vCard format it should be noted that
+      a vCard import/export API is out of scope of this specification as parsing
+      and serializing can be efficiently done in JavaScript, and libraries are
+      readily available.
       <dl title="[Constructor(optional ContactProperties contactInitDict)]
                  interface Contact : ContactProperties"
           class="idl">
@@ -515,7 +523,7 @@
       
       
       <section> <h3><a>ContactProperties</a> Dictionary</h3>
-      <dl title="dictionary ContactAddressInit" class="idl">
+      <dl title="dictionary ContactProperties" class="idl">
         <dt>ContactName name</dt>
         <dd>
         <dt>sequence&lt;ContactField&gt; emails</dt>
