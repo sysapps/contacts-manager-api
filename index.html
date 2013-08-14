@@ -423,13 +423,19 @@
     </section>
 
     <section>
-      <h2><a>ContactProperties</a> Interface</h2>
-      <p>The <a>ContactProperties</a> interface contains all the properties associated to the contact. As a principle
-      the attributes are based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the literal used in that standard. Any deviation is mentioned in
-      the description of the corresponding attribute.
-      <dl title="[NoInterfaceObject]
-                 interface ContactProperties"
+      <h2><a>Contact</a> Interface</h2>
+      <p>The <a>Contact</a> interface represents a contact stored in the address
+      book. As a principle the attributes are based on <a
+      href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the
+      literal used in that standard. Any deviation is mentioned in the
+      description of the corresponding attribute.
+      <dl title="[Constructor(optional ContactProperties contactInitDict)]
+                 interface Contact : ContactProperties"
           class="idl">
+        <dt>readonly attribute DOMString? id</dt>
+        <dd>Represents a unique identifier of the contact in the address book.
+        <dt>readonly attribute Date? lastUpdated</dt>
+        <dd>A <code>Date</code> element representing the date when the contact was last updated.
         <dt>attribute ContactName name</dt>
         <dd>An object representing the different naming attributes of the contact.
         <dt>attribute ContactField[] emails</dt>
@@ -466,19 +472,40 @@
         <dt>attribute ContactGender gender</dt>
         <dd>A string representing the contact's gender. It maps to the first component of vCard's GENDER attribute.
       </dl>
-    </section>    
-    
-    <section>
-      <h2><a>Contact</a> Interface</h2>
-      <p>The <a>Contact</a> interface represents a contact stored in the address book.
-      <dl title="[Constructor(optional ContactProperties contactInitDict)]
-                 interface Contact : ContactProperties"
-          class="idl">
-        <dt>readonly attribute DOMString? id</dt>
-        <dd>Represents a unique identifier of the contact in the address book.
-        <dt>readonly attribute Date? lastUpdated</dt>
-        <dd>A <code>Date</code> element representing the date when the contact was last updated.
+
+      <section> <h3><a>ContactProperties</a> Dictionary</h3>
+      <dl title="dictionary ContactAddressInit" class="idl">
+        <dt>ContactName name</dt>
+        <dd>
+        <dt>sequence&lt;ContactField&gt; emails</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; photos</dt>
+        <dd>
+        <dt>sequence&lt;ContactField&gt; urls</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; categories</dt>
+        <dd>
+        <dt>sequence&lt;ContactAddress&gt; addresses</dt>
+        <dd>
+        <dt>sequence&lt;ContactTelField&gt; phoneNumbers</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; organizations</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; jobTitles</dt>
+        <dd>
+        <dt>Date bday</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; notes</dt>
+        <dd>
+        <dt>sequence&lt;ContactField&gt; impp</dt>
+        <dd>
+        <dt>Date anniversary</dt>
+        <dd>
+        <dt>ContactGender gender</dt>
+        <dd>
       </dl>
+      </section>
+
     </section>    
     
     <section>
