@@ -439,7 +439,6 @@
         <dd>
       </dl>
       </section>
-
       
     </section>
 
@@ -494,6 +493,23 @@
         <dd>A string representing the contact's gender. It maps to the first component of vCard's GENDER attribute.
       </dl>
 
+      <section>
+      <h3>Steps</h3>    
+      <p> The <a>Contact</a> interface's contructor when invoked MUST run the
+      following steps:
+       <ol>
+        <li>Let <var>contact</var> be a new <code>Contact</code> object.
+        <li>Make a request to the system to generate a new unique contact
+        identifier.
+        <li>Set the <code>id</code> attribute of <var>contact</var> to the
+        generated contact identifier.
+        <li>Set the <code>lastUpdated</code> attribute of <var>contact</var> to
+        the Date at which the constructor was invoked.
+        <li>Set the other attributes of <var>contact</var> to the value of the corresponding element in the <code>contactInitDict</code> dictionary, if present.
+       </ol>     
+      </section>
+      
+      
       <section> <h3><a>ContactProperties</a> Dictionary</h3>
       <dl title="dictionary ContactAddressInit" class="idl">
         <dt>ContactName name</dt>
