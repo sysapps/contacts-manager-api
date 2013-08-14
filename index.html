@@ -57,11 +57,15 @@
       
       <pre class="example highlight">
 
-            var contact = new Contact();
-            contact.name.givenNames[0] = 'John';
-            contact.name.familyNames[0] = 'Doe';
+            var contactName = new ContactName({
+              'givenNames': ['John'],
+              'familyNames': ['Doe']
+              });
             var mobilephone = new ContactTelField(['PREF', 'home'], '+34698765432');
-            contact.phoneNumbers[0] = mobilephone;
+            var contact = new Contact({
+              'name': contactName,
+              'phoneNumbers': mobilephone
+              });
             var request = navigator.contacts.save(contact);
             request.onsuccess = function() { 
                         window.console.log('Contact saved!'); 
