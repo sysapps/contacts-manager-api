@@ -15,9 +15,15 @@
           // lcEnd:                "",
           crEnd:                "",
           editors:  [
-              { name: "Eduardo Fullea", company: "Telefonica", companyURL: "http://www.tid.es/" },
-              { name: "Jose M. Cantera", company: "Telefonica", companyURL: "http://www.tid.es/" },              
-              { name: "Christophe Dumez", company: "Samsung Electronics, Co., Ltd", companyURL: "http://www.samsung.com/sec" }
+              { name: "Eduardo Fullea",
+                company: "Telefonica",
+                companyURL: "http://www.tid.es/" },
+              { name: "Jose M. Cantera",
+                company: "Telefonica",
+                companyURL: "http://www.tid.es/" },              
+              { name: "Christophe Dumez",
+                company: "Samsung Electronics, Co., Ltd",
+                companyURL: "http://www.samsung.com/sec" }
           ],
           inlineCSS:    true,
           noIDLIn:      true,
@@ -30,26 +36,37 @@
     </script>
   </head>
   <body>
+
+    <!-- - - - - - - - - - - - - - -  Abstract - - - - - - - - - - - - - - - -->
     <section id="abstract">
-      This specification defines a System Level API which offers a simple interface to manage user's contacts stored in
-      the system's address book. A typical use case of the Contacts API is the implementation of an application to manage
-      said address book.
+      This specification defines a System Level API which offers a simple
+      interface to manage user's contacts stored in the system's address book. A
+      typical use case of the Contacts API is the implementation of an
+      application to manage said address book.
     </section>
     
+    <!-- - - - - - - - - - - - Status of this document - - - - - - - - - - - -->
     <section id="sotd">
-      This document defines a System Level API to manage the user's contacts that are stored in the system's address book.
-      Future versions of this specification are expected to align the contact data model with the
-      <a href="http://www.w3.org/TR/contacts-api">Contacts API</a> being defined by the Device APIs Working Group.
+      This document defines a System Level API to manage the user's contacts
+      that are stored in the system's address book.
+      Future versions of this specification are expected to align the contact
+      data model with the <a href="http://www.w3.org/TR/contacts-api">Contacts
+      API</a> being defined by the Device APIs Working Group.
       
-      <p>If you find any issue with this specification, please 
-         <a href="https://github.com/sysapps/contacts-manager-api/issues">file a bug on Github</a>.
+      <p>If you find any issue with this specification, please
+         <a href="https://github.com/sysapps/contacts-manager-api/issues">file a
+         bug on Github</a>.
 
     </section>
     
+    <!-- - - - - - - - - - - - - - - Introduction  - - - - - - - - - - - - - -->
     <section class="informative">
       <h2>Introduction</h2>
       <p>
-        The Contacts API allows to manage (create, edit, remove, etc) user's contacts stored in the system's address book, and thus provides the functionality needed to implement an application to manage said address book.
+        The Contacts API allows to manage (create, edit, remove, etc) user's
+        contacts stored in the system's address book, and thus provides the
+        functionality needed to implement an application to manage said address
+        book.
       <p>
         An example of use is provided below:
       
@@ -75,31 +92,41 @@
       </pre>
     </section>
     
+    <!-- - - - - - - - - - - - - -  Conformance  - - - - - - - - - - - - - - -->
     <section id="conformance">
-      <p>This specification defines conformance criteria that apply to a single product: the <dfn>user agent</dfn> that
-      implements the interfaces that it contains.
+      <p>This specification defines conformance criteria that apply to a single
+      product: the <dfn>user agent</dfn> that implements the interfaces that it
+      contains.
       
-      <p>Implementations that use ECMAScript to implement the APIs defined in this specification MUST implement them in
-      a manner consistent with the ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]], as this
-      specification uses that specification and terminology.
-      
+      <p>Implementations that use ECMAScript to implement the APIs defined in
+      this specification MUST implement them in a manner consistent with the
+      ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]], as
+      this specification uses that specification and terminology.
     </section>
     
+    <!-- - - - - - - - - - - - - -  Terminology  - - - - - - - - - - - - - - -->
     <section>
       <h2>Terminology</h2>
-      <p>The <code><a href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler"> EventHandler</a></code>
-      interface represents a callback used for event handlers as defined in [[!HTML5]].
+      <p>The <code><a
+      href="http://dev.w3.org/html5/spec/webappapis.html#eventhandler">
+      EventHandler</a></code> interface represents a callback used for event
+      handlers as defined in [[!HTML5]].
       
-      <p>The concepts <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task"> queue a task</a></dfn>
-      and <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event"> fire a simple event</a></dfn>
-      are defined in [[!HTML5]].
+      <p>The concepts <dfn><a
+      href="http://dev.w3.org/html5/spec/webappapis.html#queue-a-task"> queue a
+      task</a></dfn> and <dfn><a
+      href="http://dev.w3.org/html5/spec/webappapis.html#fire-a-simple-event">
+      fire a simple event</a></dfn> are defined in [[!HTML5]].
       
-      <p>The terms <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers"> event handler</a></dfn>
-      and <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type"> event handler event
-      types</a></dfn> are defined in [[!HTML5]].
+      <p>The terms <dfn><a
+      href="http://dev.w3.org/html5/spec/webappapis.html#event-handlers"> event
+      handler</a></dfn> and <dfn><a
+      href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
+      event handler event types</a></dfn> are defined in [[!HTML5]].
       
     </section>
 
+    <!-- - - - - - - - - - - - - - Security  - - - - - - - - - - - - - - - - -->
     <section>
       <h2>Security and privacy considerations</h2>
       <p>This API must be only exposed to trusted content
@@ -116,19 +143,23 @@
       </dl>
     </section>
     
+    <!-- - - - - - - - - ContactsManager Interface - - - - - - - - - - - - - -->
     <section>
       <h2><a>ContactsManager</a> Interface</h2>
-      <p>The <a>ContactsManager</a> interface exposes the contacts management functionality.
+      <p>The <a>ContactsManager</a> interface exposes the contacts management
+      functionality.
       
       <dl title="interface ContactsManager : EventTarget"
           class="idl">
         <dt> ContactsRequest find ()</dt>
-        <dd>This method allows to instantiate a new <code>ContactsRequest</code> object intended to search contacts
-        within the address book that match the criteria indicated in the <code>options</code> parameter.
+        <dd>This method allows to instantiate a new <code>ContactsRequest</code>
+        object intended to search contacts within the address book that match
+        the criteria indicated in the <code>options</code> parameter.
         <dl class='parameters'>
              <dt>optional ContactFindOptions options</dt>
              <dd>
-               Set of criteria that a contact needs to match to be included in the outcomes of the <code>find</code>
+               Set of criteria that a contact needs to match to be included in
+               the outcomes of the <code>find</code>
                operation. 
              </dd>
          </dl>
@@ -139,12 +170,15 @@
         </dd>
 
         <dt> ContactsRequest save ()</dt>
-        <dd>This method allows to save a contact in the address book, e.g. an existing contact after having been edited.
-        So if a contact with the same identifier, i.e. <code>id</code>, already exists in the address book, it will be updated.
+        <dd>This method allows to save a contact in the address book, e.g. an
+        existing contact after having been edited. So if a contact with the same
+        identifier, i.e. <code>id</code>, already exists in the address book, it
+        will be updated.
         <dl class='parameters'>
              <dt>Contact contact</dt>
              <dd>
-               The <code>Contact</code> object that is requested to be saved in the address book.
+               The <code>Contact</code> object that is requested to be saved in
+               the address book.
              </dd>
          </dl>
         </dd>
@@ -154,7 +188,8 @@
         <dl class='parameters'>
              <dt>DOMString contactId</dt>
              <dd>
-               The identifier of the <code>Contact</code> object that is requested to be removed from the address book.
+               The identifier of the <code>Contact</code> object that is
+               requested to be removed from the address book.
              </dd>
          </dl>
         </dd>
@@ -162,82 +197,113 @@
         <dt class="no-docs">
           attribute EventHandler oncontactschange
         </dt>
-        <dd>May be used to set an event handler to be called when contacts are added, deleted or changed in some way.</dd>
+        <dd>May be used to set an event handler to be called when contacts are
+        added, deleted or changed in some way.</dd>
       </dl>
 
-      <p> The <dfn><code>find</code></dfn> method when invoked MUST run the following steps:
+      <p> The <dfn><code>find</code></dfn> method when invoked MUST run the
+      following steps:
         <ol>
-         <li>Make a request to the system to retrieve the contacts in the address book matching with the criteria
-         indicated in the <code>options</code> parameter.
-         <li>Create a new <code>ContactsRequest</code> object and set <code>readyState</code> of the
-         <code>ContactsRequest</code> object to 'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event handler</a> of the <code>ContactsRequest</code>
-         object
+         <li>Make a request to the system to retrieve the contacts in the
+         address book matching with the criteria indicated in the
+         <code>options</code> parameter.
+         <li>Create a new <code>ContactsRequest</code> object and set
+         <code>readyState</code> of the <code>ContactsRequest</code> object to
+         'processing' and return the <code>ContactsRequest</code> to the caller 
+         <li>If there is an error invoke the <code>onerror</code> <a>event
+         handler</a> of the <code>ContactsRequest</code> object
          <li>When the request has been completed:
          <ol>
-          <li>set the <code>readyState</code> of the <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code> object to array of <code>Contact</code>
-          objects returned by the system.
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the <code>ContactsRequest</code>
+          <li>set the <code>readyState</code> of the
+          <code>ContactsRequest</code> object to 'done'
+          <li>set the <code>result</code> of the <code>ContactsRequest</code>
+          object to array of <code>Contact</code> objects returned by the
+          system.
+          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
+          <code>ContactsRequest</code>
         </ol>
        </ol>
 
-      <p> The <dfn><code>clear</code></dfn> method when invoked MUST run the following steps:
+      <p> The <dfn><code>clear</code></dfn> method when invoked MUST run the
+      following steps:
         <ol>
-         <li>Make a request to the system to clear all the contacts in the address book.
-         <li>Create a new <code>ContactsRequest</code> object and set <code>readyState</code> of the
-         <code>ContactsRequest</code> object to 'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event handler</a> of the <code>ContactsRequest</code>
-         object
+         <li>Make a request to the system to clear all the contacts in the
+         address book.
+         <li>Create a new <code>ContactsRequest</code> object and set
+         <code>readyState</code> of the <code>ContactsRequest</code> object to
+         'processing' and return the <code>ContactsRequest</code> to the caller 
+         <li>If there is an error invoke the <code>onerror</code> <a>event
+         handler</a> of the <code>ContactsRequest</code> object
          <li>When the request has been completed:
          <ol>
-          <li>set the <code>readyState</code> of the <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code> object to 'true'
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the <code>ContactsRequest</code>
+          <li>set the <code>readyState</code> of the
+          <code>ContactsRequest</code> object to 'done'
+          <li>set the <code>result</code> of the <code>ContactsRequest</code>
+          object to 'true'
+          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
+          <code>ContactsRequest</code>
         </ol>
        </ol>
 
-      <p> The <dfn><code>save</code></dfn> method when invoked MUST run the following steps:
+      <p> The <dfn><code>save</code></dfn> method when invoked MUST run the
+      following steps:
         <ol>
-         <li>Make a request to the system to save the <code>Contact</code> object passed as parameter in the address book.
-         <li>Create a new <code>ContactsRequest</code> object and set <code>readyState</code> of the
-         <code>ContactsRequest</code> object to 'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event handler</a> of the <code>ContactsRequest</code>
-         object
+         <li>Make a request to the system to save the <code>Contact</code>
+         object passed as parameter in the address book.
+         <li>Create a new <code>ContactsRequest</code> object and set
+         <code>readyState</code> of the <code>ContactsRequest</code> object to
+         'processing' and return the <code>ContactsRequest</code> to the caller 
+         <li>If there is an error invoke the <code>onerror</code> <a>event
+         handler</a> of the <code>ContactsRequest</code> object
          <li>When the request has been completed:
          <ol>
-          <li>set the <code>readyState</code> of the <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code> object to the saved <code>Contact</code>
-          object as returned by the system, and which therefore includes the <code>id</code>, <code>published</code> and
-          <code>updated</code> parameters, which could be not present in the original <code>Contact</code> object passed as
-          parameter, for instance if it is a brand new <code>Contact</code> object not yet stored in the address book
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the <code>ContactsRequest</code>
+          <li>set the <code>readyState</code> of the
+          <code>ContactsRequest</code> object to 'done'
+          <li>set the <code>result</code> of the <code>ContactsRequest</code>
+          object to the saved <code>Contact</code> object as returned by the
+          system, and which therefore includes the <code>id</code>,
+          <code>published</code> and <code>updated</code> parameters, which
+          could be not present in the original <code>Contact</code> object
+          passed as parameter, for instance if it is a brand new
+          <code>Contact</code> object not yet stored in the address book
+          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
+          <code>ContactsRequest</code>
         </ol>
        </ol>
 
-      <p> The <dfn><code>remove</code></dfn> method when invoked MUST run the following steps:
+      <p> The <dfn><code>remove</code></dfn> method when invoked MUST run the
+      following steps:
         <ol>
-         <li>Make a request to the system to remove the <code>Contact</code> object identified by the <code>contactId</code> passed as parameter from the address book.
-         <li>Create a new <code>ContactsRequest</code> object and set <code>readyState</code> of the
-         <code>ContactsRequest</code> object to 'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event handler</a> of the <code>ContactsRequest</code>
-         object
+         <li>Make a request to the system to remove the <code>Contact</code>
+         object identified by the <code>contactId</code> passed as parameter
+         from the address book.
+         <li>Create a new <code>ContactsRequest</code> object and set
+         <code>readyState</code> of the <code>ContactsRequest</code> object to
+         'processing' and return the <code>ContactsRequest</code> to the caller 
+         <li>If there is an error invoke the <code>onerror</code> <a>event
+         handler</a> of the <code>ContactsRequest</code> object
          <li>When the request has been completed:
          <ol>
-          <li>set the <code>readyState</code> of the <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code> object to 'true'
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the <code>ContactsRequest</code>
+          <li>set the <code>readyState</code> of the
+          <code>ContactsRequest</code> object to 'done'
+          <li>set the <code>result</code> of the <code>ContactsRequest</code>
+          object to 'true'
+          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
+          <code>ContactsRequest</code>
         </ol>
        </ol>
 
-      <p> Upon a change in a contact or set thereof is performed (i.e. contact(s) added / modified / removed) the system
-      MUST <a>fire a simple event</a> named <a><code>contactschange</code></a> that implements the
-      <a><code>ContactsChangeEvent</code></a> interface at the <a><code>ContactsManager</code></a> object
+      <p> Upon a change in a contact or set thereof is performed (i.e.
+      contact(s) added / modified / removed) the system MUST <a>fire a simple
+      event</a> named <a><code>contactschange</code></a> that implements the
+      <a><code>ContactsChangeEvent</code></a> interface at the
+      <a><code>ContactsManager</code></a> object
 
       <section>
         <h2>Event handlers</h2>
-        <p>The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that
-        MUST be supported as attributes by the <a>ContactsManager</a> object:
+        <p>The following are the <a>event handlers</a> (and their corresponding
+        <a>event handler event types</a>) that MUST be supported as attributes
+        by the <a>ContactsManager</a> object:
         
         <table class="simple">
           <thead>
@@ -254,14 +320,16 @@
           </tbody>
         </table>
       </section>
-    <p>The event named <a><code>contactschange</code></a> MUST implement the <a>ContactsChangeEvent</a> interface.
+    <p>The event named <a><code>contactschange</code></a> MUST implement the
+    <a>ContactsChangeEvent</a> interface.
     </section>
 
+    <!-- - - - - - - - - ContactFindOptions Dictionary - - - - - - - - - - - -->
     <section>
       <h2><a>ContactFindOptions</a> Dictionary</h2>
 
-      <p>The <a>ContactFindOptions</a> dictionary represents the criteria used to select the contacts to be returned by a
-      <code>find</code> operation.
+      <p>The <a>ContactFindOptions</a> dictionary represents the criteria used
+      to select the contacts to be returned by a <code>find</code> operation.
       <dl title="dictionary ContactFindOptions"
           class="idl">
         <dt>DOMString filterValue</dt>
@@ -269,13 +337,16 @@
         <dt>FilterOperation filterOp</dt>
         <dd>Represents the filtering operator used for the filtering.
         <dt>sequence&lt;DOMString&gt; filterBy</dt>
-        <dd>Represents the set of fields in which the search is performed (e.g. "givenName").
+        <dd>Represents the set of fields in which the search is performed (e.g.
+        "givenName").
         <dt>DOMString sortBy</dt>
-        <dd>Represents the field by which the results of the search are sorted (e.g. "givenName").
+        <dd>Represents the field by which the results of the search are sorted
+        (e.g. "givenName").
         <dt>SortOrder sortOrder</dt>
         <dd>Represents the order in which the results of the search are sorted.
         <dt>unsigned long filterLimit</dt>
-        <dd>Represents the maximum number of results that can be returned by the search operation.
+        <dd>Represents the maximum number of results that can be returned by the
+        search operation.
       </dl>
 
     <section>
@@ -285,12 +356,14 @@
       <dl class="idl" title="enum FilterOperation">
             <dt>contains</dt>
             <dd>
-                With this operation, a contact will be returned if its filtered field contains the given value.
+                With this operation, a contact will be returned if its filtered
+                field contains the given value.
             </dd>
 
             <dt>is</dt>
             <dd>
-                With this operation, a contact will be returned if its filtered field matches exactly the given value.
+                With this operation, a contact will be returned if its filtered
+                field matches exactly the given value.
             </dd>
       </dl>
 
@@ -309,21 +382,26 @@
       </section>
       
       <p class="issue">
-         It is for further study whether the level of flexibility of the filters needs to be increased and/or additional
-         mechanisms need to be put in place so that applications can keep a local copy of the address book and perform
-         the filtering locally (e.g. startTrackingChanges() and getNewChanges() methods)
+         It is for further study whether the level of flexibility of the filters
+         needs to be increased and/or additional mechanisms need to be put in
+         place so that applications can keep a local copy of the address book
+         and perform the filtering locally (e.g. startTrackingChanges() and
+         getNewChanges() methods)
       </p>
       
     </section>       
     
+    <!-- - - - - - - - -  ContactField Interface - - - - - - - - - - - - - - -->
     <section>
       <h2><a>ContactField</a> Interface</h2>
-      <p>The <a>ContactField</a> interface represents a user's attribute and the types associated to it.
+      <p>The <a>ContactField</a> interface represents a user's attribute and the
+      types associated to it.
       <dl title="[Constructor(ContactFieldInit initDict)]
                   interface ContactField"
           class="idl">
         <dt>attribute DOMString[] types</dt>
-        <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
+        <dd>Indicates the types of this contact field (e.g. "home",
+        "work").</dd>
         <dt>attribute boolean preferred</dt>
         <dd>Indicates whether this is the preferred contact field.</dd>
         <dt>attribute DOMString value</dt>
@@ -343,17 +421,19 @@
 
     </section>    
     
+    <!-- - - - - - - - - ContactTelField Interface - - - - - - - - - - - - - -->
     <section>
       <h2><a>ContactTelField</a> Interface</h2>
-      <p>The <a>ContactTelField</a> interface represents a telephone number as well as metadata associated to it, namely
-      the types (e.g. "voice", "text") and the carrier providing service to the telephony subscription associated to that number.
+      <p>The <a>ContactTelField</a> interface represents a telephone number as
+      well as metadata associated to it, namely the types (e.g. "voice", "text")
+      and the carrier providing service to the telephony subscription associated
+      to that number.
       <dl title="[Constructor(ContactTelFieldInit initDict)]
                   interface ContactTelField : ContactField"
           class="idl">
-
         <dt>attribute DOMString? carrier</dt>
-        <dd>Indicates the carrier providing service to the telephony subscription associated to that number</dd>
-
+        <dd>Indicates the carrier providing service to the telephony
+        subscription associated to that number</dd>
       </dl>
 
       <section> <h3><a>ContactTelFieldInit</a> Dictionary</h3>
@@ -369,30 +449,37 @@
       </dl>
       </section>
 
-
     </section>    
     
+    <!-- - - - - - - - - ContactAddress Interface - - - - - - - - - - - - - -->
     <section>
       <h2><a>ContactAddress</a> Interface</h2>
-      <p>The <a>ContactAddress</a> interface represents a user's physical address and the types associated to it. This
-      interface is based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> ADR attribute.
+      <p>The <a>ContactAddress</a> interface represents a user's physical
+      address and the types associated to it. This interface is based on <a
+      href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> ADR attribute.
       <dl title="[Constructor(optional ContactAddressInit initDict)]
                  interface ContactAddress"
           class="idl">
         <dt>attribute DOMString[] types</dt>
-        <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
+        <dd>Indicates the types of this contact field (e.g. "home",
+        "work").</dd>
         <dt>attribute boolean preferred</dt>
         <dd>Indicates whether this is the preferred contact field.</dd>
         <dt>attribute DOMString streetAddress</dt>
-        <dd>A string that contains the name of the street. It maps to the third component in vCard's ADR attribute.</dd>
+        <dd>A string that contains the name of the street. It maps to the third
+        component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString locality</dt>
-        <dd>A string that contains the name of the locality. It maps to the forth component in vCard's ADR attribute.</dd>
+        <dd>A string that contains the name of the locality. It maps to the
+        forth component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString region</dt>
-        <dd>A string that contains the name of the region. It maps to the fifth component in vCard's ADR attribute.</dd>
+        <dd>A string that contains the name of the region. It maps to the fifth
+        component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString postalCode</dt>
-        <dd>A string that contains the postal code. It maps to the sixth component in vCard's ADR attribute.</dd>
+        <dd>A string that contains the postal code. It maps to the sixth
+        component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString countryName</dt>
-        <dd>A string that contains the name of the country. It maps to the seventh component in vCard's ADR attribute.</dd>
+        <dd>A string that contains the name of the country. It maps to the
+        seventh component in vCard's ADR attribute.</dd>
       </dl>
 
       <section> <h3><a>ContactAddressInit</a> Dictionary</h3>
@@ -431,6 +518,7 @@
       </dl>
     </section>
 
+    <!-- - - - - - - - - ContactName Interface - - - - - - - - - - - - - - - -->
     <section>
       <h2><a>ContactName</a> Interface</h2>
       <p>The <a>ContactName</a> interface represents a user's naming attributes.
@@ -438,24 +526,26 @@
                  interface ContactName"
           class="idl">
         <dt>attribute DOMString displayName</dt>
-        <dd>A string representing the contact's display name. It maps to vCard's FN attribute.
+        <dd>A string representing the contact's display name. It maps to vCard's
+        FN attribute.
         <dt>attribute DOMString[] honorificPrefixes</dt>
-        <dd>A string or set thereof representing the contact's honorific prefix(es). It maps to the forth component in
-        vCard's N attribute.
+        <dd>A string or set thereof representing the contact's honorific
+        prefix(es). It maps to the forth component in vCard's N attribute.
         <dt>attribute DOMString[] givenNames</dt>
-        <dd>A string or set thereof representing the contact's given name(s). It maps to the second component in
-        vCard's N attribute.
+        <dd>A string or set thereof representing the contact's given name(s). It
+        maps to the second component in vCard's N attribute.
         <dt>attribute DOMString[] additionalNames</dt>
-        <dd>A string or set thereof representing any additional name of the contact. It maps to the third component in
-        vCard's N attribute.
+        <dd>A string or set thereof representing any additional name of the
+        contact. It maps to the third component in vCard's N attribute.
         <dt>attribute DOMString[] familyNames</dt>
-        <dd>A string or set thereof representing the contact's family name(s). It maps to the first component in vCard's
-        N attribute.
+        <dd>A string or set thereof representing the contact's family name(s).
+        It maps to the first component in vCard's N attribute.
         <dt>attribute DOMString[] honorificSuffixes</dt>
-        <dd>A string or set thereof representing the contact's honorific suffix(es). It maps to the fifth component in
-        vCard's N attribute.
+        <dd>A string or set thereof representing the contact's honorific
+        suffix(es). It maps to the fifth component in vCard's N attribute.
         <dt>attribute DOMString[] nicknames</dt>
-        <dd>A string or set thereof representing the contact's nick name(s). It maps to vCard's NICKNAME attribute.
+        <dd>A string or set thereof representing the contact's nick name(s). It
+        maps to vCard's NICKNAME attribute.
       </dl>
 
       <section> <h3><a>ContactNameInit</a> Dictionary</h3>
@@ -479,6 +569,7 @@
       
     </section>
 
+    <!-- - - - - - - - - Contact Interface - - - - - - - - - - - - - - - - - -->
     <section>
       <h2><a>Contact</a> Interface</h2>
       <p>The <a>Contact</a> interface represents a contact stored in the address
@@ -496,42 +587,53 @@
         <dt>readonly attribute DOMString? id</dt>
         <dd>Represents a unique identifier of the contact in the address book.
         <dt>readonly attribute Date? lastUpdated</dt>
-        <dd>A <code>Date</code> element representing the date when the contact was last updated.
+        <dd>A <code>Date</code> element representing the date when the contact
+        was last updated.
         <dt>attribute ContactName name</dt>
-        <dd>An object representing the different naming attributes of the contact.
+        <dd>An object representing the different naming attributes of the
+        contact.
         <dt>attribute ContactField[] emails</dt>
-        <dd>A <code>ContactField</code> element or set thereof containing the contact's email address(es).
-        It maps to vCard's EMAIL attribute.</dd>
+        <dd>A <code>ContactField</code> element or set thereof containing the
+        contact's email address(es). It maps to vCard's EMAIL attribute.</dd>
         <dt>attribute DOMString[] photos</dt>
-        <dd>A string or set thereof representing the URI of the photo(s) of the contact. It maps to vCard's PHOTO attribute.
+        <dd>A string or set thereof representing the URI of the photo(s) of the
+        contact. It maps to vCard's PHOTO attribute.
         <dt>attribute ContactField[] urls</dt>
-        <dd>A <code>ContactField</code> element or set thereof containing the user's urls (e.g. personal blog).
-        It maps to vCard's URL attribute.</dd>
+        <dd>A <code>ContactField</code> element or set thereof containing the
+        user's urls (e.g. personal blog). It maps to vCard's URL attribute.</dd>
         <dt>attribute DOMString[] categories</dt>
-        <dd>A string or set thereof representing the category or categories associated to the contact (e.g. "family").
-        It maps to vCard's CATEGORIES attribute.
+        <dd>A string or set thereof representing the category or categories
+        associated to the contact (e.g. "family"). It maps to vCard's CATEGORIES
+        attribute.
         <dt>attribute ContactAddress[] addresses</dt>
-        <dd>A <code>ContactAddress</code> element or set thereof containing the user's physical address(es). It maps
-        to vCard's ADR attribute</dd>
+        <dd>A <code>ContactAddress</code> element or set thereof containing the
+        user's physical address(es). It maps to vCard's ADR attribute</dd>
         <dt>attribute ContactTelField[] phoneNumbers</dt>
-        <dd>A <code>ContactTelField</code> element or set thereof containing the user's telephone numbers. It maps
-        to vCard's TEL attribute</dd>
+        <dd>A <code>ContactTelField</code> element or set thereof containing the
+        user's telephone numbers. It maps to vCard's TEL attribute</dd>
         <dt>attribute DOMString[] organizations</dt>
-        <dd>A string or set thereof representing the organization(s) the contact belongs to. It maps to vCard's ORG attribute
+        <dd>A string or set thereof representing the organization(s) the contact
+        belongs to. It maps to vCard's ORG attribute
         <dt>attribute DOMString[] jobTitles</dt>
-        <dd>A string or set thereof representing the contact's job title(s). It maps to vCard's TITLE attribute
+        <dd>A string or set thereof representing the contact's job title(s). It
+        maps to vCard's TITLE attribute
         <dt>attribute Date bday</dt>
-        <dd>A <code>Date</code> element representing the contact's birth date. It maps to vCard's BDAY attribute
+        <dd>A <code>Date</code> element representing the contact's birth date.
+        It maps to vCard's BDAY attribute
         <dt>attribute DOMString[] notes</dt>
-        <dd>A string or set thereof specifying supplemental information or a comment that is associated with the contact.
-        It maps to vCard's NOTE attribute
+        <dd>A string or set thereof specifying supplemental information or a
+        comment that is associated with the contact. It maps to vCard's NOTE
+        attribute
         <dt>attribute ContactField[] impp</dt>
-        <dd>A <code>ContactField</code> element or set thereof containing the user's instant messaging address(es).
-        It maps to vCard's IMPP attribute</dd>
+        <dd>A <code>ContactField</code> element or set thereof containing the
+        user's instant messaging address(es). It maps to vCard's IMPP
+        attribute</dd>
         <dt>attribute Date anniversary</dt>
-        <dd>A <code>Date</code> element representing the contact's anniversary. It maps to vCard's ANNIVERSARY attribute</dd>
+        <dd>A <code>Date</code> element representing the contact's anniversary.
+        It maps to vCard's ANNIVERSARY attribute</dd>
         <dt>attribute ContactGender gender</dt>
-        <dd>A string representing the contact's gender. It maps to the first component of vCard's GENDER attribute.
+        <dd>A string representing the contact's gender. It maps to the first
+        component of vCard's GENDER attribute.
       </dl>
 
       <section>
@@ -546,10 +648,11 @@
         generated contact identifier.
         <li>Set the <code>lastUpdated</code> attribute of <var>contact</var> to
         the Date at which the constructor was invoked.
-        <li>Set the other attributes of <var>contact</var> to the value of the corresponding element in the <code>contactInitDict</code> dictionary, if present.
+        <li>Set the other attributes of <var>contact</var> to the value of the
+        corresponding element in the <code>contactInitDict</code> dictionary, if
+        present.
        </ol>     
       </section>
-      
       
       <section> <h3><a>ContactInit</a> Dictionary</h3>
       <dl title="dictionary ContactInit" class="idl">
@@ -586,24 +689,29 @@
 
     </section>    
     
+    <!-- - - - - - - - - ContactsRequest Interface - - - - - - - - - - - - - -->
     <section>
       <h2><a>ContactsRequest</a> Interface</h2>
-      <p>The <a>ContactsRequest</a> interface represents an ongoing operation. It provides callbacks that are called when
-      the operation completes, as well as a reference to the operation's result. A method that initiates an operation 
-      (e.g. remove contact via the <code>remove</code> method in the <code>ContactsManager</code> interface) may return a
-      ContactsRequest object that can be used to monitor the progress of that operation.
+      <p>The <a>ContactsRequest</a> interface represents an ongoing operation.
+      It provides callbacks that are called when the operation completes, as
+      well as a reference to the operation's result. A method that initiates an
+      operation (e.g. remove contact via the <code>remove</code> method in the
+      <code>ContactsManager</code> interface) may return a ContactsRequest
+      object that can be used to monitor the progress of that operation.
       <dl title="interface ContactsRequest : EventTarget"
           class="idl">
         <dt>readonly attribute ReadyState readyState</dt>
         <dd>Indicates the state of the request.</dd>
 
         <dt>readonly attribute DOMError? error</dt>
-        <dd>An error that occured during the request. Errors are as defined in [[!DOM4]].</dd>
+        <dd>An error that occured during the request. Errors are as defined in
+        [[!DOM4]].</dd>
 
         <dt>readonly attribute any result</dt>
-        <dd>Indicates the result of the request. The type depends on the sort of request, and is specified in the
-        description of each method that returns a <code>ContactsRequest</code> object, e.g. <code>remove</code> method of the
-        <code>ContactsManager</code> object.</dd>
+        <dd>Indicates the result of the request. The type depends on the sort of
+        request, and is specified in the description of each method that returns
+        a <code>ContactsRequest</code> object, e.g. <code>remove</code> method
+        of the <code>ContactsManager</code> object.</dd>
 
         <dt class="no-docs">
           attribute EventHandler onsuccess
@@ -636,8 +744,9 @@
       <section>
         <h2>Event handlers</h2>
         <p>
-          The following are the <a>event handlers</a> (and their corresponding <a>event handler event types</a>) that
-          MUST be supported as attributes by the <a>ContactsRequest</a> object:
+          The following are the <a>event handlers</a> (and their corresponding
+          <a>event handler event types</a>) that MUST be supported as attributes
+          by the <a>ContactsRequest</a> object:
         <table class="simple">
           <thead>
             <tr>
@@ -659,21 +768,28 @@
       </section>
     </section>
    
+    <!-- - - - - - - - - ContactsChangeEvent Interface - - - - - - - - - - - -->
     <section>
       <h2><a>ContactsChangeEvent</a> Interface</h2>
-      <p>The <a>ContactsChangeEvent</a> interface represents events related to the set of contacts that have been simultaneously 
-      added, removed and/or modified. Changes that are applied to the address book in batches cause a <a>ContactsChangeEvent</a>
-      with multiple contact references to be fired, whereas changes applied sequentially cause a <a>ContactsChangeEvent</a>
+      <p>The <a>ContactsChangeEvent</a> interface represents events related to
+      the set of contacts that have been simultaneously added, removed and/or
+      modified. Changes that are applied to the address book in batches cause a
+      <a>ContactsChangeEvent</a> with multiple contact references to be fired,
+      whereas changes applied sequentially cause a <a>ContactsChangeEvent</a>
       with a single contact reference to be fired
-      <dl title="[Constructor(DOMString type, optional ContactsChangeEventInit eventInitDict)]
+      <dl title="[Constructor(DOMString type, optional ContactsChangeEventInit
+      eventInitDict)]
                  interface ContactsChangeEvent : Event"
           class="idl">
         <dt>readonly attribute DOMString[] added</dt>
-        <dd>Indicates the identifier(s) of the <code>Contact</code> object(s) that have been added.</dd>
+        <dd>Indicates the identifier(s) of the <code>Contact</code> object(s)
+        that have been added.</dd>
         <dt>readonly attribute DOMString[] modified</dt>
-        <dd>Indicates the identifier(s) of the <code>Contact</code> object(s) that have been modified.</dd>
+        <dd>Indicates the identifier(s) of the <code>Contact</code> object(s)
+        that have been modified.</dd>
         <dt>readonly attribute DOMString[] removed</dt>
-        <dd>Indicates the identifier(s) of the <code>Contact</code> object(s) that have been removed.</dd>
+        <dd>Indicates the identifier(s) of the <code>Contact</code> object(s)
+        that have been removed.</dd>
       </dl>
 
       <section> <h3><a>ContactsChangeEventInit</a> Dictionary</h3>
@@ -688,12 +804,14 @@
       </section>
     </section>
 
+    <!-- - - - - - - - - Acknowledgements - - - - - - - - - - - - - - - - - -->
     <section>
       <h2>Acknowledgements</h2>
-      <p>The editors would like to express their gratitude to the Mozilla B2G Team for their technical guidance,
-      implementation work and support, and specially to Tantek Çelik and Gregor Wagner, the original authors of B2G Contact API.</p>
+      <p>The editors would like to express their gratitude to the Mozilla B2G
+      Team for their technical guidance, implementation work and support, and
+      specially to Tantek Çelik and Gregor Wagner, the original authors of B2G
+      Contact API.</p>
     </section>
-    
     
   </body>
 </html>
