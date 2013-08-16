@@ -339,9 +339,10 @@
         <dt>sequence&lt;DOMString&gt; filterBy</dt>
         <dd>Represents the set of fields in which the search is performed (e.g.
         "givenName").
-        <dt>DOMString sortBy</dt>
-        <dd>Represents the field by which the results of the search are sorted
-        (e.g. "givenName").
+        <dt>sequence&lt;DOMString&gt; sortBy</dt>
+        <dd>Represents the fields by which the results of the search are sorted
+        (e.g. ["givenNames", "familyNames"]). The results are sorted by the
+        first field, then by the following one, if present, and so on. 
         <dt>SortOrder sortOrder</dt>
         <dd>Represents the order in which the results of the search are sorted.
         <dt>unsigned long filterLimit</dt>
