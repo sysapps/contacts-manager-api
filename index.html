@@ -81,14 +81,12 @@
               'name': contactName,
               'phoneNumbers': mobilephone
               });
-            var request = navigator.contacts.save(contact);
-            request.onsuccess = function() { 
-                        window.console.log('Contact saved!'); 
-            }
-            request.onerror = function(e) {
-                    window.console.error(e);
-            }
-            
+            navigator.contacts.save(contact).done(
+               function(contact) { window.console.log('Contact  ' +
+                      contact.name.givenNames[0] + ' ' +
+                      contact.name.familyNames[0] + ' saved!'); },
+               function(error) {   window.console.error('Error: ' + error); } )
+
       </pre>
     </section>
     
@@ -124,6 +122,16 @@
       href="http://dev.w3.org/html5/spec/webappapis.html#event-handler-event-type">
       event handler event types</a></dfn> are defined in [[!HTML5]].
       
+      <p>The <dfn><a
+      href="http://dom.spec.whatwg.org/#promise">Promise</a></dfn> interface,
+      the concepts of a <a href=
+      "http://dom.spec.whatwg.org/#concept-resolver"><dfn>resolver</dfn></a>, a
+      <dfn id="dfn-fulfill-algorithm"><a
+      href="http://dom.spec.whatwg.org/#concept-resolver-fulfill"> resolver's
+      fulfill algorithm</a></dfn> and a <dfn id="dfn-reject-algorithm"><a
+      href="http://dom.spec.whatwg.org/#concept-resolver-reject"> resolver's
+      reject algorithm</a></dfn> are defined in [[DOM4]].</p>
+  
     </section>
 
     <!-- - - - - - - - - - - - - - Security  - - - - - - - - - - - - - - - - -->
@@ -151,10 +159,11 @@
       
       <dl title="interface ContactsManager : EventTarget"
           class="idl">
-        <dt> ContactsRequest find ()</dt>
-        <dd>This method allows to instantiate a new <code>ContactsRequest</code>
-        object intended to search contacts within the address book that match
-        the criteria indicated in the <code>options</code> parameter.
+        <dt> Promise find ()</dt>
+        <dd>This method allows to search contacts within the address book that
+        match the criteria indicated in the <code>options</code> parameter.
+        It returns a <a><code>Promise</code></a> that will allow the caller to
+        be notified about the result of the operation. 
         <dl class='parameters'>
              <dt>optional ContactFindOptions options</dt>
              <dd>
@@ -165,15 +174,20 @@
          </dl>
         </dd>
 
-        <dt> ContactsRequest clear ()</dt>
+        <dt> Promise clear ()</dt>
         <dd>This method allows to remove all contacts in the address book.
+        It returns a <a><code>Promise</code></a> that will allow the caller to
+        be notified about the result of the operation. 
+
         </dd>
 
-        <dt> ContactsRequest save ()</dt>
+        <dt> Promise save ()</dt>
         <dd>This method allows to save a contact in the address book, e.g. an
         existing contact after having been edited. So if a contact with the same
         identifier, i.e. <code>id</code>, already exists in the address book, it
         will be updated.
+        It returns a <a><code>Promise</code></a> that will allow the caller to
+        be notified about the result of the operation. 
         <dl class='parameters'>
              <dt>Contact contact</dt>
              <dd>
@@ -183,8 +197,10 @@
          </dl>
         </dd>
 
-        <dt> ContactsRequest remove ()</dt>
+        <dt> Promise remove ()</dt>
         <dd>This method allows to remove a contact from the address book.
+        It returns a <a><code>Promise</code></a> that will allow the caller to
+        be notified about the result of the operation. 
         <dl class='parameters'>
              <dt>DOMString contactId</dt>
              <dd>
@@ -204,93 +220,87 @@
       <p> The <dfn><code>find</code></dfn> method when invoked MUST run the
       following steps:
         <ol>
-         <li>Make a request to the system to retrieve the contacts in the
-         address book matching with the criteria indicated in the
-         <code>options</code> parameter.
-         <li>Create a new <code>ContactsRequest</code> object and set
-         <code>readyState</code> of the <code>ContactsRequest</code> object to
-         'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event
-         handler</a> of the <code>ContactsRequest</code> object
-         <li>When the request has been completed:
-         <ol>
-          <li>set the <code>readyState</code> of the
-          <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code>
-          object to array of <code>Contact</code> objects returned by the
-          system.
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
-          <code>ContactsRequest</code>
+          <li>Let <var>promise</var> be a new <a><code>Promise</code></a> object
+          and <var>resolver</var> its associated resolver.
+          <li>Return <var>promise</var> and continue the following steps
+          asynchronously.
+          <li>Make a request to the system to retrieve the contacts in the
+          address book matching the criteria indicated in the
+          <code>options</code> parameter.
+          <li>If there is an error invoke <em>resolver</em>'s <a
+          class="internalDFN" href="#dfn-reject-algorithm">reject algorithm</a>
+          with no argument and terminate these steps.
+          <li>When the request has been completed:
+          <ol>
+            <li>Let <em>contacts</em> be a new array of
+            <a><code>Contact</code></a> objects providing the results of the
+            find operation.
+            <li>Invoke <em>resolver</em>'s <a class="internalDFN"
+            href="#dfn-fulfill-algorithm">fulfill algorithm</a> with
+            <em>contacts</em> as the <code>value</code> argument.
+         </ol>
         </ol>
-       </ol>
 
       <p> The <dfn><code>clear</code></dfn> method when invoked MUST run the
       following steps:
         <ol>
-         <li>Make a request to the system to clear all the contacts in the
-         address book.
-         <li>Create a new <code>ContactsRequest</code> object and set
-         <code>readyState</code> of the <code>ContactsRequest</code> object to
-         'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event
-         handler</a> of the <code>ContactsRequest</code> object
-         <li>When the request has been completed:
-         <ol>
-          <li>set the <code>readyState</code> of the
-          <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code>
-          object to 'true'
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
-          <code>ContactsRequest</code>
+          <li>Let <var>promise</var> be a new <a><code>Promise</code></a> object
+          and <var>resolver</var> its associated resolver.
+          <li>Return <var>promise</var> and continue the following steps
+          asynchronously.
+          <li>Make a request to the system to clear all the contacts in the
+          address book.
+          <li>If there is an error invoke <em>resolver</em>'s <a class="internalDFN"
+          href="#dfn-reject-algorithm">reject algorithm</a> with no argument and
+          terminate these steps.
+          <li>When the request has been completed invoke <em>resolver</em>'s <a
+          class="internalDFN" href="#dfn-fulfill-algorithm">fulfill
+          algorithm</a> with no argument and terminate these steps.
         </ol>
-       </ol>
 
       <p> The <dfn><code>save</code></dfn> method when invoked MUST run the
       following steps:
         <ol>
-         <li>Make a request to the system to save the <code>Contact</code>
-         object passed as parameter in the address book.
-         <li>Create a new <code>ContactsRequest</code> object and set
-         <code>readyState</code> of the <code>ContactsRequest</code> object to
-         'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event
-         handler</a> of the <code>ContactsRequest</code> object
-         <li>When the request has been completed:
-         <ol>
-          <li>set the <code>readyState</code> of the
-          <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code>
-          object to the saved <code>Contact</code> object as returned by the
-          system, and which therefore includes the <code>id</code>,
-          <code>published</code> and <code>updated</code> parameters, which
-          could be not present in the original <code>Contact</code> object
-          passed as parameter, for instance if it is a brand new
-          <code>Contact</code> object not yet stored in the address book
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
-          <code>ContactsRequest</code>
-        </ol>
+          <li>Let <var>promise</var> be a new <a><code>Promise</code></a> object
+          and <var>resolver</var> its associated resolver.
+          <li>Return <var>promise</var> and continue the following steps
+          asynchronously.
+          <li>Make a request to the system to save in the address book the
+          <a><code>Contact</code></a> object passed as parameter.
+          <li>If there is an error invoke <em>resolver</em>'s <a
+          class="internalDFN" href="#dfn-reject-algorithm">reject algorithm</a>
+          with no argument and terminate these steps.
+          <li>When the request has been completed:
+          <ol>
+            <li>Let <em>contact</em> be the <a><code>Contact</code></a> object
+            as returned by the system, and which therefore has its
+            <code>id</code> and <code>lastUpdated</code> parameters set, whereas
+            they could be null in the original <a><code>Contact</code></a>
+            object passed as parameter, for instance if it is a brand new
+            <a><code>Contact</code></a> object not yet stored in the address
+            book.
+            <li>Invoke <em>resolver</em>'s <a class="internalDFN"
+            href="#dfn-fulfill-algorithm">fulfill algorithm</a> with
+            <em>contact</em> as the <code>value</code> argument.
+         </ol>
        </ol>
 
       <p> The <dfn><code>remove</code></dfn> method when invoked MUST run the
       following steps:
         <ol>
-         <li>Make a request to the system to remove the <code>Contact</code>
-         object identified by the <code>contactId</code> passed as parameter
-         from the address book.
-         <li>Create a new <code>ContactsRequest</code> object and set
-         <code>readyState</code> of the <code>ContactsRequest</code> object to
-         'processing' and return the <code>ContactsRequest</code> to the caller 
-         <li>If there is an error invoke the <code>onerror</code> <a>event
-         handler</a> of the <code>ContactsRequest</code> object
-         <li>When the request has been completed:
-         <ol>
-          <li>set the <code>readyState</code> of the
-          <code>ContactsRequest</code> object to 'done'
-          <li>set the <code>result</code> of the <code>ContactsRequest</code>
-          object to 'true'
-          <li>invoke the <code>onsuccess</code> <a>event handler</a> of the
-          <code>ContactsRequest</code>
-        </ol>
+          <li>Let <var>promise</var> be a new <a><code>Promise</code></a> object
+          and <var>resolver</var> its associated resolver.
+          <li>Return <var>promise</var> and continue the following steps
+          asynchronously.
+          <li>Make a request to the system to remove the
+          <a><code>Contact</code></a> object identified by the
+          <code>contactId</code> passed as parameter from the address book.
+          <li>If there is an error invoke <em>resolver</em>'s <a
+          class="internalDFN" href="#dfn-reject-algorithm">reject algorithm</a>
+          with no argument and terminate these steps.
+          <li>When the request has been completed invoke <em>resolver</em>'s <a
+          class="internalDFN" href="#dfn-fulfill-algorithm">fulfill
+          algorithm</a> with no argument and terminate these steps.
        </ol>
 
       <p> Upon a change in a contact or set thereof is performed (i.e.
@@ -396,7 +406,7 @@
       <h2><a>ContactField</a> Interface</h2>
       <p>The <a>ContactField</a> interface represents a user's attribute and the
       types associated to it.
-      <dl title="[Constructor(ContactFieldInit initDict)]
+      <dl title="[Constructor(optional ContactFieldInit initDict)]
                   interface ContactField"
           class="idl">
         <dt>attribute DOMString[] types</dt>
@@ -428,7 +438,7 @@
       well as metadata associated to it, namely the types (e.g. "voice", "text")
       and the carrier providing service to the telephony subscription associated
       to that number.
-      <dl title="[Constructor(ContactTelFieldInit initDict)]
+      <dl title="[Constructor(optional ContactTelFieldInit initDict)]
                   interface ContactTelField : ContactField"
           class="idl">
         <dt>attribute DOMString? carrier</dt>
@@ -689,85 +699,6 @@
 
     </section>    
     
-    <!-- - - - - - - - - ContactsRequest Interface - - - - - - - - - - - - - -->
-    <section>
-      <h2><a>ContactsRequest</a> Interface</h2>
-      <p>The <a>ContactsRequest</a> interface represents an ongoing operation.
-      It provides callbacks that are called when the operation completes, as
-      well as a reference to the operation's result. A method that initiates an
-      operation (e.g. remove contact via the <code>remove</code> method in the
-      <code>ContactsManager</code> interface) may return a ContactsRequest
-      object that can be used to monitor the progress of that operation.
-      <dl title="interface ContactsRequest : EventTarget"
-          class="idl">
-        <dt>readonly attribute ReadyState readyState</dt>
-        <dd>Indicates the state of the request.</dd>
-
-        <dt>readonly attribute DOMError? error</dt>
-        <dd>An error that occured during the request. Errors are as defined in
-        [[!DOM4]].</dd>
-
-        <dt>readonly attribute any result</dt>
-        <dd>Indicates the result of the request. The type depends on the sort of
-        request, and is specified in the description of each method that returns
-        a <code>ContactsRequest</code> object, e.g. <code>remove</code> method
-        of the <code>ContactsManager</code> object.</dd>
-
-        <dt class="no-docs">
-          attribute EventHandler onsuccess
-        </dt>
-        <dd></dd>
-
-        <dt class="no-docs">
-          attribute EventHandler onerror
-        </dt>
-        <dd></dd>
-      </dl>
-
-      <section>
-      <h2>Enumerations</h2>
-
-      <p>A <a>ContactsRequest</a> can be in one of the following states:
-      <dl class="idl" title="enum ReadyState">
-            <dt>processing</dt>
-            <dd>
-                The request has been made and it is progressing.
-            </dd>
-
-            <dt>done</dt>
-            <dd>
-                The request has been already completed.
-            </dd>
-      </dl>
-      </section>
-
-      <section>
-        <h2>Event handlers</h2>
-        <p>
-          The following are the <a>event handlers</a> (and their corresponding
-          <a>event handler event types</a>) that MUST be supported as attributes
-          by the <a>ContactsRequest</a> object:
-        <table class="simple">
-          <thead>
-            <tr>
-              <th>event handler</th>
-              <th>event handler event type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong><code>onsuccess</code></strong></td>
-              <td><code><dfn>success</dfn></code></td>
-            </tr>
-            <tr>
-              <td><strong><code>onerror</code></strong></td>
-              <td><code><dfn>error</dfn></code></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </section>
-   
     <!-- - - - - - - - - ContactsChangeEvent Interface - - - - - - - - - - - -->
     <section>
       <h2><a>ContactsChangeEvent</a> Interface</h2>
