@@ -49,19 +49,21 @@
     <section class="informative">
       <h2>Introduction</h2>
       <p>
-        The Contacts API allows applications to provide the functionality of a usual an application to manage an
-        address book, thus allowing the display and management (create, edit, remove, etc.) of contacts.
-      
+        The Contacts API allows to manage (create, edit, remove, etc) user's contacts stored in the system's address book, and thus provides the functionality needed to implement an application to manage said address book.
       <p>
         An example of use is provided below:
       
       <pre class="example highlight">
 
-            var contact = new Contact();
-            contact.name.givenNames[0] = 'John';
-            contact.name.familyNames[0] = 'Doe';
-            var mobilephone = new ContactTelField(['PREF', 'home'], '+34698765432');
-            contact.phoneNumbers[0] = mobilephone;
+            var contactName = new ContactName({
+              'givenNames': ['John'],
+              'familyNames': ['Doe']
+              });
+            var mobilephone = new ContactTelField(['home'], true, '+34698765432');
+            var contact = new Contact({
+              'name': contactName,
+              'phoneNumbers': mobilephone
+              });
             var request = navigator.contacts.save(contact);
             request.onsuccess = function() { 
                         window.console.log('Contact saved!'); 
@@ -317,26 +319,57 @@
     <section>
       <h2><a>ContactField</a> Interface</h2>
       <p>The <a>ContactField</a> interface represents a user's attribute and the types associated to it.
-      <dl title="[Constructor(DOMString［］ types, DOMString value)] interface ContactField"
+      <dl title="[Constructor(ContactFieldInit initDict)]
+                  interface ContactField"
           class="idl">
         <dt>attribute DOMString[] types</dt>
-        <dd>Indicates whether it is the preferred contact field ("PREF") and the types of this contact field (e.g. "home", "work").</dd>
+        <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
+        <dt>attribute boolean preferred</dt>
+        <dd>Indicates whether this is the preferred contact field.</dd>
         <dt>attribute DOMString value</dt>
         <dd>A string that contains the user's address.</dd>
       </dl>
+
+      <section> <h3><a>ContactFieldInit</a> Dictionary</h3>
+      <dl title="dictionary ContactFieldInit" class="idl">
+        <dt>sequence&lt;DOMString&gt; types</dt>
+        <dd>
+        <dt>boolean preferred</dt>
+        <dd>
+        <dt>DOMString value</dt>
+        <dd>
+      </dl>
+      </section>
+
     </section>    
     
     <section>
       <h2><a>ContactTelField</a> Interface</h2>
       <p>The <a>ContactTelField</a> interface represents a telephone number as well as metadata associated to it, namely
       the types (e.g. "voice", "text") and the carrier providing service to the telephony subscription associated to that number.
-      <dl title="[Constructor(DOMString［］ types, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
+      <dl title="[Constructor(ContactTelFieldInit initDict)]
+                  interface ContactTelField : ContactField"
           class="idl">
 
         <dt>attribute DOMString? carrier</dt>
         <dd>Indicates the carrier providing service to the telephony subscription associated to that number</dd>
 
       </dl>
+
+      <section> <h3><a>ContactTelFieldInit</a> Dictionary</h3>
+      <dl title="dictionary ContactTelFieldInit" class="idl">
+        <dt>sequence&lt;DOMString&gt; types</dt>
+        <dd>
+        <dt>boolean preferred</dt>
+        <dd>
+        <dt>DOMString carrier</dt>
+        <dd>
+        <dt>DOMString value</dt>
+        <dd>
+      </dl>
+      </section>
+
+
     </section>    
     
     <section>
@@ -347,7 +380,9 @@
                  interface ContactAddress"
           class="idl">
         <dt>attribute DOMString[] types</dt>
-        <dd>Indicates whether it is the preferred address ("PREF") and the types for this contact address (e.g. "home", "work").</dd>
+        <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
+        <dt>attribute boolean preferred</dt>
+        <dd>Indicates whether this is the preferred contact field.</dd>
         <dt>attribute DOMString streetAddress</dt>
         <dd>A string that contains the name of the street. It maps to the third component in vCard's ADR attribute.</dd>
         <dt>attribute DOMString locality</dt>
@@ -363,6 +398,8 @@
       <section> <h3><a>ContactAddressInit</a> Dictionary</h3>
       <dl title="dictionary ContactAddressInit" class="idl">
         <dt>sequence&lt;DOMString&gt; types</dt>
+        <dd>
+        <dt>boolean preferred</dt>
         <dd>
         <dt>DOMString streetAddress</dt>
         <dd>
@@ -396,8 +433,8 @@
 
     <section>
       <h2><a>ContactName</a> Interface</h2>
-      <p>The <a>ContactName</a> interface represents a user's maning attributes.
-      <dl title="[NoInterfaceObject]
+      <p>The <a>ContactName</a> interface represents a user's naming attributes.
+      <dl title="[Constructor(optional ContactNameInit initDict)]
                  interface ContactName"
           class="idl">
         <dt>attribute DOMString displayName</dt>
@@ -420,16 +457,46 @@
         <dt>attribute DOMString[] nicknames</dt>
         <dd>A string or set thereof representing the contact's nick name(s). It maps to vCard's NICKNAME attribute.
       </dl>
+
+      <section> <h3><a>ContactNameInit</a> Dictionary</h3>
+      <dl title="dictionary ContactNameInit" class="idl">
+        <dt>DOMString displayName</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; honorificPrefixes</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; givenNames</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; additionalNames</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; familyNames</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; honorificSuffixes</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; nicknames</dt>
+        <dd>
+      </dl>
+      </section>
+      
     </section>
 
     <section>
-      <h2><a>ContactProperties</a> Interface</h2>
-      <p>The <a>ContactProperties</a> interface contains all the properties associated to the contact. As a principle
-      the attributes are based on <a href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the literal used in that standard. Any deviation is mentioned in
-      the description of the corresponding attribute.
-      <dl title="[NoInterfaceObject]
-                 interface ContactProperties"
+      <h2><a>Contact</a> Interface</h2>
+      <p>The <a>Contact</a> interface represents a contact stored in the address
+      book. As a principle the attributes are based on <a
+      href="http://tools.ietf.org/html/rfc6350">vCard 4.0</a> and reuse the
+      literal used in that standard. Any naming deviation is mentioned in the
+      description of the corresponding attribute. Whereas this correspondence
+      facilitates the import/export from/to vCard format it should be noted that
+      a vCard import/export API is out of scope of this specification as parsing
+      and serializing can be efficiently done in JavaScript, and libraries are
+      readily available.
+      <dl title="[Constructor(optional ContactInit contactInitDict)]
+                 interface Contact"
           class="idl">
+        <dt>readonly attribute DOMString? id</dt>
+        <dd>Represents a unique identifier of the contact in the address book.
+        <dt>readonly attribute Date? lastUpdated</dt>
+        <dd>A <code>Date</code> element representing the date when the contact was last updated.
         <dt>attribute ContactName name</dt>
         <dd>An object representing the different naming attributes of the contact.
         <dt>attribute ContactField[] emails</dt>
@@ -466,19 +533,57 @@
         <dt>attribute ContactGender gender</dt>
         <dd>A string representing the contact's gender. It maps to the first component of vCard's GENDER attribute.
       </dl>
-    </section>    
-    
-    <section>
-      <h2><a>Contact</a> Interface</h2>
-      <p>The <a>Contact</a> interface represents a contact stored in the address book.
-      <dl title="[Constructor(optional ContactProperties contactInitDict)]
-                 interface Contact : ContactProperties"
-          class="idl">
-        <dt>readonly attribute DOMString? id</dt>
-        <dd>Represents a unique identifier of the contact in the address book.
-        <dt>readonly attribute Date? lastUpdated</dt>
-        <dd>A <code>Date</code> element representing the date when the contact was last updated.
+
+      <section>
+      <h3>Steps</h3>    
+      <p> The <a>Contact</a> interface's contructor when invoked MUST run the
+      following steps:
+       <ol>
+        <li>Let <var>contact</var> be a new <code>Contact</code> object.
+        <li>Make a request to the system to generate a new unique contact
+        identifier.
+        <li>Set the <code>id</code> attribute of <var>contact</var> to the
+        generated contact identifier.
+        <li>Set the <code>lastUpdated</code> attribute of <var>contact</var> to
+        the Date at which the constructor was invoked.
+        <li>Set the other attributes of <var>contact</var> to the value of the corresponding element in the <code>contactInitDict</code> dictionary, if present.
+       </ol>     
+      </section>
+      
+      
+      <section> <h3><a>ContactInit</a> Dictionary</h3>
+      <dl title="dictionary ContactInit" class="idl">
+        <dt>ContactName name</dt>
+        <dd>
+        <dt>sequence&lt;ContactField&gt; emails</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; photos</dt>
+        <dd>
+        <dt>sequence&lt;ContactField&gt; urls</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; categories</dt>
+        <dd>
+        <dt>sequence&lt;ContactAddress&gt; addresses</dt>
+        <dd>
+        <dt>sequence&lt;ContactTelField&gt; phoneNumbers</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; organizations</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; jobTitles</dt>
+        <dd>
+        <dt>Date bday</dt>
+        <dd>
+        <dt>sequence&lt;DOMString&gt; notes</dt>
+        <dd>
+        <dt>sequence&lt;ContactField&gt; impp</dt>
+        <dd>
+        <dt>Date anniversary</dt>
+        <dd>
+        <dt>ContactGender gender</dt>
+        <dd>
       </dl>
+      </section>
+
     </section>    
     
     <section>
