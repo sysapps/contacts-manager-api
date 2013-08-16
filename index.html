@@ -225,11 +225,11 @@
           <li>Return <var>promise</var> and continue the following steps
           asynchronously.
           <li>Make a request to the system to retrieve the contacts in the
-          address book matching with the criteria indicated in the
+          address book matching the criteria indicated in the
           <code>options</code> parameter.
           <li>If there is an error invoke <em>resolver</em>'s <a
           class="internalDFN" href="#dfn-reject-algorithm">reject algorithm</a>
-          with no arguments and terminate these steps.
+          with no argument and terminate these steps.
           <li>When the request has been completed:
           <ol>
             <li>Let <em>contacts</em> be a new array of
@@ -251,11 +251,11 @@
           <li>Make a request to the system to clear all the contacts in the
           address book.
           <li>If there is an error invoke <em>resolver</em>'s <a class="internalDFN"
-          href="#dfn-reject-algorithm">reject algorithm</a> with no arguments and
+          href="#dfn-reject-algorithm">reject algorithm</a> with no argument and
           terminate these steps.
           <li>When the request has been completed invoke <em>resolver</em>'s <a
           class="internalDFN" href="#dfn-fulfill-algorithm">fulfill
-          algorithm</a> with no arguments and terminate these steps.
+          algorithm</a> with no argument and terminate these steps.
         </ol>
 
       <p> The <dfn><code>save</code></dfn> method when invoked MUST run the
@@ -269,14 +269,14 @@
           <a><code>Contact</code></a> object passed as parameter.
           <li>If there is an error invoke <em>resolver</em>'s <a
           class="internalDFN" href="#dfn-reject-algorithm">reject algorithm</a>
-          with no arguments and terminate these steps.
+          with no argument and terminate these steps.
           <li>When the request has been completed:
           <ol>
             <li>Let <em>contact</em> be the <a><code>Contact</code></a> object
-            as returned by the system, and which therefore includes the
-            <code>id</code> and <code>latUpdated</code> parameters, which could
-            be not present in the original <a><code>Contact</code></a> object
-            passed as parameter, for instance if it is a brand new
+            as returned by the system, and which therefore has its
+            <code>id</code> and <code>lastUpdated</code> parameters set, whereas
+            they could be null in the original <a><code>Contact</code></a>
+            object passed as parameter, for instance if it is a brand new
             <a><code>Contact</code></a> object not yet stored in the address
             book.
             <li>Invoke <em>resolver</em>'s <a class="internalDFN"
@@ -297,10 +297,10 @@
           <code>contactId</code> passed as parameter from the address book.
           <li>If there is an error invoke <em>resolver</em>'s <a
           class="internalDFN" href="#dfn-reject-algorithm">reject algorithm</a>
-          with no arguments and terminate these steps.
+          with no argument and terminate these steps.
           <li>When the request has been completed invoke <em>resolver</em>'s <a
           class="internalDFN" href="#dfn-fulfill-algorithm">fulfill
-          algorithm</a> with no arguments and terminate these steps.
+          algorithm</a> with no argument and terminate these steps.
        </ol>
 
       <p> Upon a change in a contact or set thereof is performed (i.e.
