@@ -319,7 +319,8 @@
     <section>
       <h2><a>ContactField</a> Interface</h2>
       <p>The <a>ContactField</a> interface represents a user's attribute and the types associated to it.
-      <dl title="[Constructor(DOMString［］ types, boolean preferred, DOMString value)] interface ContactField"
+      <dl title="[Constructor(ContactFieldInit initDict)]
+                  interface ContactField"
           class="idl">
         <dt>attribute DOMString[] types</dt>
         <dd>Indicates the types of this contact field (e.g. "home", "work").</dd>
@@ -328,19 +329,47 @@
         <dt>attribute DOMString value</dt>
         <dd>A string that contains the user's address.</dd>
       </dl>
+
+      <section> <h3><a>ContactFieldInit</a> Dictionary</h3>
+      <dl title="dictionary ContactFieldInit" class="idl">
+        <dt>sequence&lt;DOMString&gt; types</dt>
+        <dd>
+        <dt>boolean preferred</dt>
+        <dd>
+        <dt>DOMString value</dt>
+        <dd>
+      </dl>
+      </section>
+
     </section>    
     
     <section>
       <h2><a>ContactTelField</a> Interface</h2>
       <p>The <a>ContactTelField</a> interface represents a telephone number as well as metadata associated to it, namely
       the types (e.g. "voice", "text") and the carrier providing service to the telephony subscription associated to that number.
-      <dl title="[Constructor(DOMString［］ types, boolean preferred, DOMString value, optional DOMString carrier)] interface ContactTelField : ContactField"
+      <dl title="[Constructor(ContactTelFieldInit initDict)]
+                  interface ContactTelField : ContactField"
           class="idl">
 
         <dt>attribute DOMString? carrier</dt>
         <dd>Indicates the carrier providing service to the telephony subscription associated to that number</dd>
 
       </dl>
+
+      <section> <h3><a>ContactTelFieldInit</a> Dictionary</h3>
+      <dl title="dictionary ContactTelFieldInit" class="idl">
+        <dt>sequence&lt;DOMString&gt; types</dt>
+        <dd>
+        <dt>boolean preferred</dt>
+        <dd>
+        <dt>DOMString carrier</dt>
+        <dd>
+        <dt>DOMString value</dt>
+        <dd>
+      </dl>
+      </section>
+
+
     </section>    
     
     <section>
