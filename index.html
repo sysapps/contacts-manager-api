@@ -73,13 +73,13 @@
       <pre class="example highlight">
 
             var contactName = new ContactName({
-              'givenNames': ['John'],
-              'familyNames': ['Doe']
+              givenNames: ['John'],
+              familyNames: ['Doe']
               });
-            var mobilephone = new ContactTelField(['home'], true, '+34698765432');
+            var mobilePhone = new ContactTelField({ types: ['home'], preferred: true, value: '+34698765432' });
             var contact = new Contact({
-              'name': contactName,
-              'phoneNumbers': mobilephone
+              name: contactName,
+              phoneNumbers: [mobilePhone]
               });
             navigator.contacts.save(contact).done(
                function(contact) { window.console.log('Contact  ' +
