@@ -81,7 +81,7 @@
               name: contactName,
               phoneNumbers: [mobilePhone]
               });
-            navigator.contacts.save(contact).done(
+            navigator.contacts.save(contact).then(
                function(contact) { window.console.log('Contact  ' +
                       contact.name.givenNames[0] + ' ' +
                       contact.name.familyNames[0] + ' saved!'); },
